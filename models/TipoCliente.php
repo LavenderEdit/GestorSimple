@@ -1,17 +1,15 @@
 <?php
 namespace Models;
-
+require __DIR__ . "/../models/BaseModel.php";
 class TipoCliente extends BaseModel
 {
     private int $id;
     private string $nombre;
     private string $descripcion;
 
-    public function __construct(int $id, string $nombre, string $descripcion)
+    public function __construct($pdo)
     {
-        $this->id = $id;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
+        parent::__construct($pdo);
     }
 
     // Métodos para procedimientos de almacenamientos

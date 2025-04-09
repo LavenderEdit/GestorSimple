@@ -9,6 +9,7 @@ export function runComponentRegistry() {
 
   switch (pageName) {
     case "login.php":
+    case "register.php":
       togglePasswordVisibility();
       break;
     case "index.php":

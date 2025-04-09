@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-
+require __DIR__ . "/../models/BaseModel.php";
 class AvatarUsuario extends BaseModel
 {
     private int $id_avatar_usuario;
@@ -11,22 +11,9 @@ class AvatarUsuario extends BaseModel
     private string $dimension_x_avatar;
     private string $dimension_y_avatar;
 
-    public function __construct(
-        int $id_avatar_usuario = 0,
-        string $avatar_usuario = "",
-        string $nombre_avatar = "",
-        string $tipo_avatar = "",
-        string $peso_avatar = "",
-        string $dimension_x_avatar = "",
-        string $dimension_y_avatar = ""
-    ) {
-        $this->id_avatar_usuario = $id_avatar_usuario;
-        $this->avatar_usuario = $avatar_usuario;
-        $this->nombre_avatar = $nombre_avatar;
-        $this->tipo_avatar = $tipo_avatar;
-        $this->peso_avatar = $peso_avatar;
-        $this->dimension_x_avatar = $dimension_x_avatar;
-        $this->dimension_y_avatar = $dimension_y_avatar;
+    public function __construct($pdo)
+    {
+        parent::__construct($pdo);
     }
 
     // Métodos para procedimientos de almacenamientos

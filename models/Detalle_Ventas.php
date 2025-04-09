@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-
+require __DIR__ . "/../models/BaseModel.php";
 class Detalle_Ventas extends BaseModel
 {
     private int $id_detalle;
@@ -10,20 +10,9 @@ class Detalle_Ventas extends BaseModel
     private int $id_venta;
     private int $id_producto;
 
-    public function __construct(
-        int $id_detalle = 0,
-        int $cantidad = 0,
-        float $precio_unitario = 0.0,
-        float $subtotal = 0.0,
-        int $id_venta = 0,
-        int $id_producto = 0
-    ) {
-        $this->id_detalle = $id_detalle;
-        $this->cantidad = $cantidad;
-        $this->precio_unitario = $precio_unitario;
-        $this->subtotal = $subtotal;
-        $this->id_venta = $id_venta;
-        $this->id_producto = $id_producto;
+    public function __construct($pdo)
+    {
+        parent::__construct($pdo);
     }
 
     // Métodos para procedimientos de almacenamientos

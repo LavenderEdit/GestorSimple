@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-
+require __DIR__ . "/../models/BaseModel.php";
 class Pagos extends BaseModel
 {
     private int $id_pago;
@@ -9,18 +9,9 @@ class Pagos extends BaseModel
     private int $id_venta;
     private int $id_metodo_pago;
 
-    public function __construct(
-        int $id_pago = 0,
-        ?\DateTime $fecha_pago = null,
-        float $monto = 0.0,
-        int $id_venta = 0,
-        int $id_metodo_pago = 0
-    ) {
-        $this->id_pago = $id_pago;
-        $this->fecha_pago = $fecha_pago ?? new \DateTime();
-        $this->monto = $monto;
-        $this->id_venta = $id_venta;
-        $this->id_metodo_pago = $id_metodo_pago;
+    public function __construct($pdo)
+    {
+        parent::__construct($pdo);
     }
 
     // Métodos para procedimientos de almacenamientos

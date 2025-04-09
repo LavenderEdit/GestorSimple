@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-
+require __DIR__ . "/../models/BaseModel.php";
 class Productos extends BaseModel
 {
     private int $id_producto;
@@ -11,22 +11,9 @@ class Productos extends BaseModel
     private int $id_categoria;
     private int $id_proveedor;
 
-    public function __construct(
-        int $id_producto = 0,
-        string $nombre = '',
-        string $descripcion = '',
-        float $precio = 0.0,
-        int $stock = 0,
-        int $id_categoria = 0,
-        int $id_proveedor = 0
-    ) {
-        $this->id_producto = $id_producto;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->precio = $precio;
-        $this->stock = $stock;
-        $this->id_categoria = $id_categoria;
-        $this->id_proveedor = $id_proveedor;
+    public function __construct($pdo)
+    {
+        parent::__construct($pdo);
     }
 
     // Métodos para procedimientos de almacenamientos

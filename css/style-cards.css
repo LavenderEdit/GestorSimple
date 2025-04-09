@@ -1,0 +1,9 @@
+.tarjeta-funcionalidad {
+    border: 2px solid rgba(13, 110, 253, 0.6) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.tarjeta-funcionalidad:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}

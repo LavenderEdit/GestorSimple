@@ -5,7 +5,7 @@ class Controller
 {
     public function loadModel(string $model)
     {
-        $modelPath = "../app/models/" . $model . ".php";
+        $modelPath = "/GestorSimple/models/" . $model . ".php";
         if (file_exists($modelPath)) {
             require_once $modelPath;
             $fullModelClass = "\\Models\\" . $model;
@@ -17,12 +17,12 @@ class Controller
 
     public function loadView(string $view, array $data = [])
     {
-        $viewPath = $_SERVER['DOCUMENT_ROOT'] . "/GestorVentas/app/views/" . $view . ".php";
+        $viewPath = $_SERVER['DOCUMENT_ROOT'] . "/GestorSimple/views/" . $view . ".php";
         if (file_exists($viewPath)) {
             extract($data);
             require_once $viewPath;
         } else {
-            die("La vista {$view} no existe.");
+            die("La vista con la ruta {$viewPath}, {$view} no existe.");
         }
     }
 }

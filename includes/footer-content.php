@@ -1,4 +1,4 @@
-<footer class="custom-footer fixed-bottom" id="contact">
+<footer class="custom-footer" id="contact">
     <div class="container py-4">
         <div class="row g-4">
             <!-- Redes Sociales -->
