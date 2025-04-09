@@ -1,7 +1,7 @@
 <?php
 return [
-    'db_host' => 'localhost',
+    'db_host' => 'bd-g3.mysql.database.azure.com',
     'db_name' => 'g3_gestor_ventas',
-    'db_user' => 'root',
-    'db_pass' => 'Lavendernara_1',
+    'db_user' => 'g3Admin',
+    'db_pass' => 'Serfelizen29',
 ];
