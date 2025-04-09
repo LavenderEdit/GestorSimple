@@ -17,7 +17,7 @@
         <!-- Carousel items -->
         <div class="carousel-inner">
             <!-- Ítem 1 -->
-            <div class="carousel-item active" data-bs-interval="5000">
+            <div class="carousel-item active" data-bs-interval="2000">
                 <div class="ratio ratio-16x9">
                     <img src="images/img/Análisis Financiero.jpg" class="d-block w-100 object-fit-cover"
                         alt="Gestión de Ventas">
