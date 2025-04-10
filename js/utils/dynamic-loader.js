@@ -1,5 +1,5 @@
 import { updateHeaderDate } from "../ventas/ventas-date.js";
-import { initBusquedaPorFecha } from "../ventas/fechaVentas.js?v=1";
+import { initBusquedaPorFecha } from "../ventas/fechaVentas.js?v=2";
 
 const pageCallbacks = {
   ventas: () => {
