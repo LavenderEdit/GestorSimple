@@ -24,7 +24,6 @@ class ProductoController
 
     public function obtenerClientesPorFiltrado(): array
     {
-        session_start();
         $nombre_prod = $_POST['filtro-nombre'] ?? null;
         $categoria_id = $_POST['filtro-categoria'] ?? null;
         $proveedor_id = $_POST['filtro-proveedor'] ?? null;

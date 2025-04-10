@@ -1,5 +1,6 @@
 <?php
 require_once 'controllers/AuthController.php';
+require_once 'controllers/ClientesController.php';
 
 use Controllers\AuthController;
 

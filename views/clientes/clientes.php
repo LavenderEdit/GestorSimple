@@ -1,11 +1,11 @@
-<!-- Botón para abrir el modal --> 
+<!-- Botón para abrir el modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarCliente">
   Agregar Cliente
 </button>
 
 <!-- Modal Bootstrap 5 -->
 <div class="modal fade" id="modalAgregarCliente" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content" style="background-color: rgba(33, 37, 41, 1) !important; color: white;">
       <div class="modal-header">
         <h5 class="modal-title" id="modalLabel">Cliente / Proveedor</h5>
@@ -45,15 +45,16 @@
               <div class="col-md-12">
                 <label for="id_tipo_cliente" class="form-label">Tipo de Cliente</label>
                 <select class="form-select" id="id_tipo_cliente" name="id_tipo_cliente" required>
+                  <option value="" selected>Seleccione su Tipo de Cliente</option>
                   <?php
                   require_once __DIR__ . '/../../controllers/TipoClienteController.php';
                   use Controllers\TipoClienteController;
-                  
+
                   $controller = new TipoClienteController();
                   $tipos = $controller->getTiposClientes();
-                  
+
                   foreach ($tipos as $tipo) {
-                      echo "<option value='{$tipo['id_tipo_cliente']}'>{$tipo['nombre_tipo']}</option>";
+                    echo "<option value='{$tipo['id_tipo_cliente']}'>{$tipo['nombre_tipo']}</option>";
                   }
                   ?>
                 </select>
