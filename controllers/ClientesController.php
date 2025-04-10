@@ -37,9 +37,41 @@ class ClientesController
     {
         return $this->clientesModel->obtenerClientePorId($id);
     }
-    
+
     public function obtenerClientesPorNombre($nombre): array
     {
         return $this->clientesModel->obtenerClientesPorNombre($nombre);
     }
 }
+
+if (isset($_GET['action']) && $_GET['action'] === 'buscar_clientes') {
+    $controller = new ClientesController();
+
+    $valor = $_POST['query'] ?? '';
+    $tipo = $_POST['type'] ?? '';
+
+    if (empty($valor) || empty($tipo)) {
+        header('Content-Type: application/json');
+        echo json_encode([]);
+        exit;
+    }
+
+    if ($tipo === 'id') {
+        $cliente = $controller->obtenerClientePorId($valor);
+        header('Content-Type: application/json');
+        echo json_encode($cliente);
+        exit;
+    }
+
+    if ($tipo === 'nombre') {
+        $clientes = $controller->obtenerClientesPorNombre($valor);
+        header('Content-Type: application/json');
+        echo json_encode($clientes);
+        exit;
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode([]);
+    exit;
+}
+
