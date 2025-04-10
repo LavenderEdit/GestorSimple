@@ -23,7 +23,7 @@ export function pintarVentas(ventas) {
         claseEstado = "bg-danger";
         break;
       default:
-        claseEstado = "bg-secondary"; // Por si viene algo no esperado
+        claseEstado = "bg-secondary";
     }
 
     const itemHTML = `

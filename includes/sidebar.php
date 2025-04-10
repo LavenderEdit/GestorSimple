@@ -2,7 +2,7 @@
 <div class="bg-dark text-white vh-100 position-fixed collapse collapse-horizontal show sidebar-custom" id="app-sidebar">
     <div class="p-3 border-bottom border-secondary d-flex align-items-center justify-content-between">
         <h5 class="mb-0 d-flex align-items-center">
-            <a href="./index.php" style="">
+            <a class="text-white" href="./index.php" style="text-decoration: none;">
             <i class="fas fa-store me-2"></i>
             <span class="fw-bold">Gestor Ventas</span>
             </a>
