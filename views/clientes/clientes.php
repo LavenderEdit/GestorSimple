@@ -72,6 +72,7 @@
   </div>
 </div>
 
+<!-- Listado de clientes general -->
 <?php
 require_once __DIR__ . '/../../controllers/ClientesController.php';
 use Controllers\ClientesController;
@@ -82,7 +83,24 @@ $clientes = $controller->obtenerClientes();
 
 <div class="container mt-4">
   <h4 class="text-white">Listado de Clientes</h4>
-  <ul class="list-group">
+
+  <!-- Filtro de búsqueda interactiva -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <input type="text" class="form-control" id="searchInput" placeholder="Buscar cliente...">
+    </div>
+    <div class="col-md-2">
+      <select class="form-select" id="searchType">
+        <option value="id">ID Cliente</option>
+        <option value="nombre">Nombre Cliente</option>
+      </select>
+    </div>
+  </div>
+ 
+  <script type="module" src="./js/clientes/initClientes.js"></script>
+
+  <!-- Listado de clientes, que se actualizará con AJAX -->
+  <ul class="list-group" id="clienteList">
     <?php foreach ($clientes as $cliente): ?>
       <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
