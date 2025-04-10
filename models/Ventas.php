@@ -20,14 +20,9 @@ class Ventas extends BaseModel
         return $this->callProcedure('crear', [$fecha, $total, $id_cliente, $id_usuario]);
     }
 
-    public function obtenerVentas()
+    public function buscar_por_fecha_usuario($id_usuario, $fecha)
     {
-        return $this->callProcedure('visualizar', []);
-    }
-
-    public function obtenerVentaPorId($id)
-    {
-        return $this->callProcedure('visualizar_por_id', [$id]);
+        return $this->callProcedure('buscar_por_fecha_usuario', [$id_usuario, $fecha]);
     }
 
     // Getters y Setters

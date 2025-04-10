@@ -28,7 +28,11 @@ class AuthController
             $usuario = $this->usuarioModel->autenticarUsuario($correo, $password);
 
             if ($usuario) {
-                $_SESSION['usuario'] = $usuario;
+                $_SESSION['usuario'] = [
+                    'id_usuario' => $usuario['id_usuario'],
+                    'nombre' => $usuario['nombre']
+                ];
+
                 header("Location: " . "views/dashboard.php");
                 exit;
             } else {

@@ -1,3 +1,15 @@
+import { updateHeaderDate } from "../ventas/ventas-date.js";
+import { initBusquedaPorFecha } from "../ventas/fechaVentas.js?v=1";
+
+const pageCallbacks = {
+  ventas: () => {
+    updateHeaderDate(".header-date");
+    initBusquedaPorFecha();
+  },
+  // Cualquier otra función de otra página que sea definida aquí
+  //Ejm: dashboard: () => { ... },
+};
+
 export function loadPageContent(page) {
   let file = "";
 
@@ -39,6 +51,9 @@ export function loadPageContent(page) {
       const content = document.getElementById("main-content");
       if (content) {
         content.innerHTML = html;
+        if (pageCallbacks[page]) {
+          pageCallbacks[page]();
+        }
       }
     })
     .catch((err) => {
