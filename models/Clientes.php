@@ -32,6 +32,11 @@ class Clientes extends BaseModel
         return $this->callProcedure('visualizar_por_id', [$id]);
     }
 
+    public function obtenerClientesPorNombre($nombre)
+    {
+        return $this->callProcedure('visualizar_por_nombre', [$nombre]);
+    }
+    
     // Getters y Setters
     public function getIdCliente(): int
     {
