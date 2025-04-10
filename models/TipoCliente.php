@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-require __DIR__ . "/../models/BaseModel.php";
+require_once __DIR__ . "/../models/BaseModel.php";
 class TipoCliente extends BaseModel
 {
     private int $id;

@@ -1,4 +1,4 @@
-import { pintarVentas } from "./renderVentas.js";
+import { pintarVentas } from "./renderVentas.js?v=1";
 
 export function initBusquedaPorFecha() {
   $("#buscar-fecha-btn").on("click", function () {

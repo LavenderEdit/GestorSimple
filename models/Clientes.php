@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-require __DIR__ . "/../models/BaseModel.php";
+require_once __DIR__ . "/../models/BaseModel.php";
 class Clientes extends BaseModel
 {
     private int $id_cliente;
@@ -32,6 +32,11 @@ class Clientes extends BaseModel
         return $this->callProcedure('visualizar_por_id', [$id]);
     }
 
+    public function obtenerClientesPorNombre($nombre)
+    {
+        return $this->callProcedure('visualizar_por_nombre', [$nombre]);
+    }
+    
     // Getters y Setters
     public function getIdCliente(): int
     {

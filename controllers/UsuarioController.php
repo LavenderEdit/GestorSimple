@@ -1,6 +1,8 @@
 <?php
 namespace Controllers;
 
+require_once __DIR__ . "/../database/database.php";
+require_once __DIR__ . "/../models/Usuario.php";
 use Models\Usuario;
 use Core\Controller;
 

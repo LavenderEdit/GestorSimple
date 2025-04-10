@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-require __DIR__ . "/../models/BaseModel.php";
+require_once __DIR__ . "/../models/BaseModel.php";
 class Productos extends BaseModel
 {
     private int $id_producto;
@@ -22,14 +22,24 @@ class Productos extends BaseModel
         return $this->callProcedure('crear', [$nombre, $descripcion, $precio, $stock, $id_categoria, $id_proveedor]);
     }
 
-    public function obtenerPagos()
+    public function obtenerProductos()
     {
         return $this->callProcedure('visualizar', []);
     }
 
-    public function obtenerPagoPorId($id)
+    public function obtenerProductoPorId($id)
     {
         return $this->callProcedure('visualizar_por_id', [$id]);
+    }
+
+    public function obtenerListaProductos()
+    {
+        return $this->callProcedure('obtener_todos', []);
+    }
+
+    public function obtenerListaProductosPorBusqueda($nombre, $id_categoria, $id_proveedor)
+    {
+        return $this->callProcedure('visualizar_por_nom_cat_prov', [$nombre, $id_categoria, $id_proveedor]);
     }
 
     // Getters y Setters
