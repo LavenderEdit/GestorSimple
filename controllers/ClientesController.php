@@ -32,4 +32,14 @@ class ClientesController
     {
         return $this->clientesModel->obtenerClientes();
     }
+
+    public function obtenerClientePorId($id): array
+    {
+        return $this->clientesModel->obtenerClientePorId($id);
+    }
+    
+    public function obtenerClientesPorNombre($nombre): array
+    {
+        return $this->clientesModel->obtenerClientesPorNombre($nombre);
+    }
 }
