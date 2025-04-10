@@ -24,9 +24,9 @@ class ProductoController
 
     public function obtenerClientesPorFiltrado(): array
     {
-        $nombre_prod = $_POST['filtro-nombre'] ?? null;
-        $categoria_id = $_POST['filtro-categoria'] ?? null;
-        $proveedor_id = $_POST['filtro-proveedor'] ?? null;
+        $nombre_prod = (isset($_POST['filtro-nombre']) && $_POST['filtro-nombre'] !== '') ? $_POST['filtro-nombre'] : null;
+        $categoria_id = (isset($_POST['filtro-categoria']) && $_POST['filtro-categoria'] !== '') ? (int) $_POST['filtro-categoria'] : null;
+        $proveedor_id = (isset($_POST['filtro-proveedor']) && $_POST['filtro-proveedor'] !== '') ? (int) $_POST['filtro-proveedor'] : null;
 
         if ($nombre_prod || $categoria_id || $proveedor_id) {
             return $this->productosModel->obtenerListaProductosPorBusqueda($nombre_prod, $categoria_id, $proveedor_id);
@@ -34,6 +34,7 @@ class ProductoController
 
         return [];
     }
+
 }
 
 if (isset($_GET['action']) && $_GET['action'] === 'buscar_por_filtro') {
