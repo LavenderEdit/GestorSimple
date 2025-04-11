@@ -1,8 +1,10 @@
 import { buscarClientes } from "./buscarClientes.js";
 import { renderizarClientes } from "./renderizarClientes.js";
-import "./modalClientes.js";
+import { initModalClientes } from "./modalClientes.js";
 
 export function initClientes() {
+  initModalClientes();
+
   const searchInput = document.getElementById("searchInput");
   const searchType = document.getElementById("searchType");
 
@@ -16,7 +18,6 @@ export function initClientes() {
     const type = searchType.value;
 
     if (type === "todos") {
-      // Si el tipo es "todos", obtener todos los clientes
       buscarClientes("", "todos")
         .done((clientes) => renderizarClientes(clientes))
         .fail(() => {
@@ -24,7 +25,6 @@ export function initClientes() {
           renderizarClientes([]);
         });
     } else if (query.length > 0 && type !== "") {
-      // Si hay un query y un tipo de búsqueda, realizar la búsqueda
       buscarClientes(query, type)
         .done((clientes) => renderizarClientes(clientes))
         .fail(() => {
@@ -32,11 +32,10 @@ export function initClientes() {
           renderizarClientes([]);
         });
     } else {
-      renderizarClientes([]); // Limpiar la lista si no hay consulta
+      renderizarClientes([]);
     }
   };
 
-  // Agregar eventos para búsqueda interactiva
   searchInput.addEventListener("input", manejarBusqueda);
   searchType.addEventListener("change", manejarBusqueda);
 }

@@ -16,28 +16,31 @@ class ClientesController
         $this->clientesModel = new Clientes($pdo);
     }
 
-    public function guardarCliente()
+    public function guardarCliente(): void
     {
-        var_dump($_POST); // Depuración: Verificar los datos recibidos
-        exit;
-    
-        $num_id = $_POST['num_identificacion'] ?? null;
-        $nombre = $_POST['nombre'] ?? null;
-        $telefono = $_POST['telefono'] ?? null;
-        $email = $_POST['email'] ?? null;
-        $direccion = $_POST['direccion'] ?? null;
-        $tipo_cliente = $_POST['id_tipo_cliente'] ?? null;
-    
-        $resultado = $this->clientesModel->crearCliente($num_id, $nombre, $telefono, $email, $direccion, $tipo_cliente);
-    
+        $num_id = trim($_POST['num_identificacion'] ?? '');
+        $nombre = trim($_POST['nombre'] ?? '');
+        $telefono = trim($_POST['telefono'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $direccion = trim($_POST['direccion'] ?? '');
+        $tipo_cliente = trim($_POST['id_tipo_cliente'] ?? '');
+
+        $resultado = $this->clientesModel->crearCliente($num_id, $nombre, $direccion, $telefono, $email, $tipo_cliente);
+
         header('Content-Type: application/json');
         if ($resultado) {
-            echo json_encode(['success' => true]);
+            echo json_encode([
+                'success' => true,
+                'message' => 'Registro exitoso.'
+            ]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error al guardar el cliente.']);
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al guardar el cliente.'
+            ]);
         }
-        exit;
     }
+
 
     public function obtenerClientes(): array
     {
@@ -71,7 +74,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'buscar_clientes') {
     if ($tipo === 'id' && !empty($valor)) {
         $cliente = $controller->obtenerClientePorId($valor);
         header('Content-Type: application/json');
-        echo json_encode($cliente ? [$cliente] : []);
+        echo json_encode($cliente);
         exit;
     }
 
@@ -82,9 +85,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'buscar_clientes') {
         exit;
     }
 
-    // Si no se cumple ninguna condición, devolver un array vacío
     header('Content-Type: application/json');
     echo json_encode([]);
     exit;
 }
 
+if (isset($_GET['action']) && $_GET['action'] === 'guardar') {
+    $controller = new ClientesController();
+    $controller->guardarCliente();
+}

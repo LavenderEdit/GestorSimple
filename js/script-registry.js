@@ -1,6 +1,6 @@
 import { togglePasswordVisibility } from "./script-functions.js";
 import { setupMainCarousel } from "./carousel/main-carousel.js";
-import { initSidebar } from "./sidebar/main-sidebar.js?v=6";
+import { initSidebar } from "./sidebar/main-sidebar.js?v=8";
 import { initSidebarFeatures } from "./sidebar/sidebar-features.js";
 
 export function runComponentRegistry() {
