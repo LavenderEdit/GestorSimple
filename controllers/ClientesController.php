@@ -73,10 +73,14 @@ class ClientesController
         return $this->clientesModel->obtenerClientes();
     }
 
-    public function obtenerClientePorId($id): array
-    {
-        return $this->clientesModel->obtenerClientePorId($id);
-    }
+    public function obtenerClientePorId($id): void
+{
+    $cliente = $this->clientesModel->obtenerClientePorId($id);
+
+    header('Content-Type: application/json');
+    echo json_encode($cliente);
+    exit;
+}
 
     public function obtenerClientesPorNombre($nombre): array
     {

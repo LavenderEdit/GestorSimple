@@ -100,25 +100,31 @@
       </div>
     </div>
 
-    <!-- Listado de clientes, que se actualizará con AJAX -->
-    <ul class="list-group" id="clienteList">
-      <?php foreach ($clientes as $cliente): ?>
-        <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold"><?php echo htmlspecialchars($cliente['nombre']); ?></div>
-            <small>
-              ID: <?php echo htmlspecialchars($cliente['id_cliente']); ?> |
-              Doc: <?php echo htmlspecialchars($cliente['num_identificacion']); ?> |
-              Email: <?php echo htmlspecialchars($cliente['email']); ?> |
-              Tel: <?php echo htmlspecialchars($cliente['telefono']); ?>
-            </small>
-            <br>
-            <span class="badge bg-secondary"><?php echo htmlspecialchars($cliente['direccion']); ?></span>
-          </div>
-          <span class="badge bg-primary rounded-pill">
-            Tipo <?php echo htmlspecialchars($cliente['id_tipo_cliente']); ?>
-          </span>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
+<!-- Listado de clientes, que se actualizará con AJAX -->
+<ul class="list-group" id="clienteList">
+  <?php foreach ($clientes as $cliente): ?>
+    <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold"><?php echo htmlspecialchars($cliente['nombre']); ?></div>
+        <small>
+          ID: <?php echo htmlspecialchars($cliente['id_cliente']); ?> |
+          Doc: <?php echo htmlspecialchars($cliente['num_identificacion']); ?> |
+          Email: <?php echo htmlspecialchars($cliente['email']); ?> |
+          Tel: <?php echo htmlspecialchars($cliente['telefono']); ?>
+        </small>
+        <br>
+        <span class="badge bg-secondary"><?php echo htmlspecialchars($cliente['direccion']); ?></span>
+      </div>
+      <div>
+        <!-- Botón Editar -->
+        <button class="btn btn-sm btn-editar-cliente me-2" data-id="<?php echo $cliente['id_cliente']; ?>" style="background-color: #00A36C; color: white; border: none;" >
+          <i class="bi bi-pencil"></i> Editar
+        </button>
+        <!-- Botón Eliminar -->
+        <button class="btn btn-sm btn-eliminar-cliente" data-id="<?php echo $cliente['id_cliente']; ?>" style="background-color: #FF073A; color: white; border: none;">
+          <i class="bi bi-trash"></i> Eliminar
+        </button>
+      </div>
+    </li>
+  <?php endforeach; ?>
+</ul>
