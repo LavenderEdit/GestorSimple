@@ -1,5 +1,6 @@
 import { buscarClientes } from "./buscarClientes.js";
 import { renderizarClientes } from "./renderizarClientes.js";
+import "./modalClientes.js";
 
 export function initClientes() {
   const searchInput = document.getElementById("searchInput");
