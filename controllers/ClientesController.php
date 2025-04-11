@@ -50,26 +50,28 @@ if (isset($_GET['action']) && $_GET['action'] === 'buscar_clientes') {
     $valor = $_POST['query'] ?? '';
     $tipo = $_POST['type'] ?? '';
 
-    if (empty($valor) || empty($tipo)) {
+    if ($tipo === 'todos') {
+        $clientes = $controller->obtenerClientes();
         header('Content-Type: application/json');
-        echo json_encode([]);
+        echo json_encode($clientes);
         exit;
     }
 
-    if ($tipo === 'id') {
+    if ($tipo === 'id' && !empty($valor)) {
         $cliente = $controller->obtenerClientePorId($valor);
         header('Content-Type: application/json');
-        echo json_encode($cliente);
+        echo json_encode($cliente ? [$cliente] : []);
         exit;
     }
 
-    if ($tipo === 'nombre') {
+    if ($tipo === 'nombre' && !empty($valor)) {
         $clientes = $controller->obtenerClientesPorNombre($valor);
         header('Content-Type: application/json');
         echo json_encode($clientes);
         exit;
     }
 
+    // Si no se cumple ninguna condición, devolver un array vacío
     header('Content-Type: application/json');
     echo json_encode([]);
     exit;
