@@ -18,14 +18,25 @@ class ClientesController
 
     public function guardarCliente()
     {
+        var_dump($_POST); // Depuración: Verificar los datos recibidos
+        exit;
+    
         $num_id = $_POST['num_identificacion'] ?? null;
         $nombre = $_POST['nombre'] ?? null;
         $telefono = $_POST['telefono'] ?? null;
         $email = $_POST['email'] ?? null;
         $direccion = $_POST['direccion'] ?? null;
         $tipo_cliente = $_POST['id_tipo_cliente'] ?? null;
-
-        return $this->clientesModel->crearCliente($num_id, $nombre, $telefono, $email, $direccion, $tipo_cliente);
+    
+        $resultado = $this->clientesModel->crearCliente($num_id, $nombre, $telefono, $email, $direccion, $tipo_cliente);
+    
+        header('Content-Type: application/json');
+        if ($resultado) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al guardar el cliente.']);
+        }
+        exit;
     }
 
     public function obtenerClientes(): array
