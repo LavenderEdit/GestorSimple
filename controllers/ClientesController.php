@@ -73,14 +73,21 @@ class ClientesController
         return $this->clientesModel->obtenerClientes();
     }
 
-    public function obtenerClientePorId($id): void
-{
-    $cliente = $this->clientesModel->obtenerClientePorId($id);
+    public function obtenerClientePorId_Param($id)
+    {
+        return $this->clientesModel->obtenerClientePorId($id);
+    }
 
-    header('Content-Type: application/json');
-    echo json_encode($cliente);
-    exit;
-}
+    public function obtenerClientePorId(): void
+    {
+        $id = $_GET['id'] ?? '';
+
+        $cliente = $this->clientesModel->obtenerClientePorId($id);
+
+        header('Content-Type: application/json');
+        echo json_encode($cliente);
+        exit;
+    }
 
     public function obtenerClientesPorNombre($nombre): array
     {
@@ -102,7 +109,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'buscar_clientes') {
     }
 
     if ($tipo === 'id' && !empty($valor)) {
-        $cliente = $controller->obtenerClientePorId($valor);
+        $cliente = $controller->obtenerClientePorId_Param($valor);
         header('Content-Type: application/json');
         echo json_encode($cliente);
         exit;

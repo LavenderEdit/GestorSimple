@@ -1,7 +1,9 @@
 import { buscarClientes } from "./buscarClientes.js";
-import { renderizarClientes } from "./renderizarClientes.js";
+import { renderItems } from "../api/renderItems.js";
+import { clientTemplate } from "./renderTemplateClientes.js";
 import { guardarCliente } from "./guardarCliente.js";
 import { editarCliente } from "./editarCliente.js";
+import { getClientePorId } from "./infoCliente.js";
 
 export function initModalClientes() {
   const formAgregarCliente = document.getElementById("formAgregarCliente");
@@ -17,13 +19,15 @@ export function initModalClientes() {
 
     const formData = new FormData(formAgregarCliente);
 
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
     try {
       let data;
       if (formData.get("id_cliente")) {
-        // Si hay un id_cliente, es una edición
         data = await editarCliente(formData);
       } else {
-        // Si no hay id_cliente, es un nuevo cliente
         data = await guardarCliente(formData);
       }
 
@@ -35,9 +39,22 @@ export function initModalClientes() {
         formAgregarCliente.reset();
 
         buscarClientes("", "todos")
-          .done((clientes) => renderizarClientes(clientes))
-          .fail(() => {
+          .then((clientes) => {
+            renderItems({
+              containerId: "clienteList",
+              data: clientes,
+              emptyMessage: "No se encontraron clientes.",
+              templateFn: clientTemplate,
+            });
+          })
+          .catch(() => {
             console.error("Error al obtener todos los clientes.");
+            renderItems({
+              containerId: "clienteList",
+              data: [],
+              emptyMessage: "No se encontraron clientes.",
+              templateFn: clientTemplate,
+            });
           });
       } else {
         console.error("Error en la operación:", data.message);
@@ -52,26 +69,26 @@ export function initModalClientes() {
       const idCliente = event.target.getAttribute("data-id");
 
       try {
-        const response = await fetch(
-          `/GestorSimple/router.php?controller=clientes&action=obtenerClientePorId&id=${idCliente}`
-        );
+        const response = await getClientePorId(idCliente);
+        const cliente = response[0];
 
-        if (!response.ok) {
-          throw new Error("Error al obtener los datos del cliente.");
-        }
+        formAgregarCliente.querySelector('[name="id_cliente"]').value =
+          cliente.id_cliente;
+        formAgregarCliente.querySelector('[name="num_identificacion"]').value =
+          cliente.num_identificacion;
+        formAgregarCliente.querySelector('[name="nombre"]').value =
+          cliente.nombre;
+        formAgregarCliente.querySelector('[name="telefono"]').value =
+          cliente.telefono;
+        formAgregarCliente.querySelector('[name="email"]').value =
+          cliente.email;
+        formAgregarCliente.querySelector('[name="direccion"]').value =
+          cliente.direccion;
+        formAgregarCliente.querySelector('[name="id_tipo_cliente"]').value =
+          cliente.id_tipo_cliente;
 
-        const cliente = await response.json();
-
-        formAgregarCliente.querySelector('[name="id_cliente"]').value = cliente.id_cliente;
-        formAgregarCliente.querySelector('[name="num_identificacion"]').value = cliente.num_identificacion;
-        formAgregarCliente.querySelector('[name="nombre"]').value = cliente.nombre;
-        formAgregarCliente.querySelector('[name="telefono"]').value = cliente.telefono;
-        formAgregarCliente.querySelector('[name="email"]').value = cliente.email;
-        formAgregarCliente.querySelector('[name="direccion"]').value = cliente.direccion;
-        formAgregarCliente.querySelector('[name="id_tipo_cliente"]').value = cliente.id_tipo_cliente;
-
-        modalAgregarCliente.querySelector(".modal-title").textContent = "Editar Cliente";
-
+        modalAgregarCliente.querySelector(".modal-title").textContent =
+          "Editar Cliente";
         const modalInstance = new bootstrap.Modal(modalAgregarCliente);
         modalInstance.show();
       } catch (error) {
