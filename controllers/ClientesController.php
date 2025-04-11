@@ -41,6 +41,32 @@ class ClientesController
         }
     }
 
+    public function editarCliente()
+    {
+        $id_cli = trim($_POST['id_cliente'] ?? '');
+        $num_id = trim($_POST['num_identificacion'] ?? '');
+        $nombre = trim($_POST['nombre'] ?? '');
+        $telefono = trim($_POST['telefono'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $direccion = trim($_POST['direccion'] ?? '');
+        $tipo_cliente = trim($_POST['id_tipo_cliente'] ?? '');
+
+        $resultado = $this->clientesModel->editarCliente($id_cli, $num_id, $nombre, $direccion, $telefono, $email, $tipo_cliente);
+
+        header('Content-Type: application/json');
+        if ($resultado) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Edición exitosa.'
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al actualizar el cliente.'
+            ]);
+        }
+    }
+
 
     public function obtenerClientes(): array
     {
@@ -88,9 +114,4 @@ if (isset($_GET['action']) && $_GET['action'] === 'buscar_clientes') {
     header('Content-Type: application/json');
     echo json_encode([]);
     exit;
-}
-
-if (isset($_GET['action']) && $_GET['action'] === 'guardar') {
-    $controller = new ClientesController();
-    $controller->guardarCliente();
 }

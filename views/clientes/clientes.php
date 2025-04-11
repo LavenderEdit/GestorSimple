@@ -18,6 +18,8 @@
             <form id="formAgregarCliente">
               <div class="row g-3 p-3">
                 <div class="col-md-6">
+                  <input type="hidden" name="id_cliente">
+
                   <label for="num_identificacion" class="form-label">Número de Identificación</label>
                   <input type="text" class="form-control" id="num_identificacion" name="num_identificacion" required>
                 </div>

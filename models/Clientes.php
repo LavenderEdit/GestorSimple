@@ -22,6 +22,11 @@ class Clientes extends BaseModel
         return $this->callProcedure('crear', [$num_identificacion, $nombre, $direccion, $telefono, $email, $id_tipo_cliente]);
     }
 
+    public function editarCliente($id_cliente, $num_identificacion, $nombre, $direccion, $telefono, $email, $id_tipo_cliente)
+    {
+        return $this->callProcedure('editar', [$id_cliente, $num_identificacion, $nombre, $direccion, $telefono, $email, $id_tipo_cliente]);
+    }
+
     public function obtenerClientes()
     {
         return $this->callProcedure('visualizar', []);

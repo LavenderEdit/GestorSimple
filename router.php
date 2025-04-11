@@ -1,9 +1,4 @@
 <?php
-// router.php
-
-// Habilitar errores para depuración (opcional en producción)
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
 
 $controllerName = $_GET['controller'] ?? 'auth';
 $action = $_GET['action'] ?? null;
