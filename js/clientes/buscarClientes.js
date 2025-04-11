@@ -1,7 +1,7 @@
 export function buscarClientes(query, type) {
     return $.ajax({
-        url: `router.php?controller=clientes&action=buscarClientes`,
-        method: "GET",
+        url: "./controllers/ClientesController.php?action=buscar_clientes",
+        method: "POST",
         data: { query, type },
         dataType: "json",
     });

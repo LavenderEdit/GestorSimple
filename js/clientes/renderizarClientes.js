@@ -1,6 +1,6 @@
 export function renderizarClientes(clientes) {
     const clienteList = document.getElementById("clienteList");
-    clienteList.innerHTML = ""; // Limpiar el listado actual
+    clienteList.innerHTML = "";
 
     if (clientes.length === 0) {
         clienteList.innerHTML = `<li class="list-group-item bg-dark text-white">No se encontraron clientes.</li>`;

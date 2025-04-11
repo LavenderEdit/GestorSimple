@@ -3,8 +3,8 @@
   Agregar Cliente
 </button>
 
-<!-- Modal Bootstrap 5 -->
-<div class="modal fade" id="modalAgregarCliente" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+<<!-- Modal Bootstrap 5 -->
+<div class="modal fade" id="modalAgregarCliente" tabindex="-1" aria-labelledby="modalLabel">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content" style="background-color: rgba(33, 37, 41, 1) !important; color: white;">
       <div class="modal-header">
@@ -15,7 +15,7 @@
       <!-- Único tab activo: INFORMACIÓN -->
       <div class="tab-content">
         <div class="tab-pane fade show active" id="info" role="tabpanel">
-          <form id="formAgregarCliente" method="post" action="router.php?controller=clientes&action=guardar">
+          <form id="formAgregarCliente" method="post" >
             <div class="row g-3 p-3">
               <div class="col-md-6">
                 <label for="num_identificacion" class="form-label">Número de Identificación</label>
@@ -34,7 +34,7 @@
 
               <div class="col-md-6">
                 <label for="email" class="form-label">Correo electrónico</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" autocomplete="email">
               </div>
 
               <div class="col-md-12">
@@ -87,17 +87,16 @@ $clientes = $controller->obtenerClientes();
   <!-- Filtro de búsqueda interactiva -->
   <div class="row mb-3">
     <div class="col-md-4">
-      <input type="text" class="form-control" id="searchInput" placeholder="Buscar cliente...">
+      <input type="text" class="form-control" id="searchInput" name="searchInput" placeholder="Buscar cliente...">
     </div>
     <div class="col-md-2">
-      <select class="form-select" id="searchType">
+      <select class="form-select" id="searchType" name="searchType">
+        <option value="todos">Seleccione el tipo de filtrado</option>
         <option value="id">ID Cliente</option>
         <option value="nombre">Nombre Cliente</option>
       </select>
     </div>
   </div>
- 
-  <script type="module" src="./js/clientes/initClientes.js"></script>
 
   <!-- Listado de clientes, que se actualizará con AJAX -->
   <ul class="list-group" id="clienteList">
