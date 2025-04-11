@@ -30,6 +30,16 @@ class Pagos extends BaseModel
         return $this->callProcedure('visualizar_por_id', [$id]);
     }
 
+    public function obtenerListaUsuarioPagos($id_usuario)
+    {
+        return $this->callProcedure('lista_usuario', [$id_usuario]);
+    }
+
+    public function obtenerInfoPagos($id_pago, $id_usuario)
+    {
+        return $this->callProcedure('info_modal', [$id_pago, $id_usuario]);
+    }
+
     // Getters y Setters
     public function getIdPago(): int
     {
