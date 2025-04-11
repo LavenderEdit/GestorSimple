@@ -42,6 +42,11 @@ class Clientes extends BaseModel
         return $this->callProcedure('visualizar_por_nombre', [$nombre]);
     }
 
+    public function deleteClientePorId($id)
+    {
+        return $this->callProcedure('eliminar_total', [$id]);
+    }
+
     // Getters y Setters
     public function getIdCliente(): int
     {

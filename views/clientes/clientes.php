@@ -116,11 +116,9 @@
         <span class="badge bg-secondary"><?php echo htmlspecialchars($cliente['direccion']); ?></span>
       </div>
       <div>
-        <!-- Botón Editar -->
         <button class="btn btn-sm btn-editar-cliente me-2" data-id="<?php echo $cliente['id_cliente']; ?>" style="background-color: #00A36C; color: white; border: none;" >
           <i class="bi bi-pencil"></i> Editar
         </button>
-        <!-- Botón Eliminar -->
         <button class="btn btn-sm btn-eliminar-cliente" data-id="<?php echo $cliente['id_cliente']; ?>" style="background-color: #FF073A; color: white; border: none;">
           <i class="bi bi-trash"></i> Eliminar
         </button>

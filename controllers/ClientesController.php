@@ -67,6 +67,17 @@ class ClientesController
         }
     }
 
+    public function deletearCliente()
+    {
+        $id = $_GET['id'] ?? '';
+
+        $resultado = $this->clientesModel->deleteClientePorId($id);
+
+        echo json_encode([
+            'success' => $resultado,
+            'message' => $resultado ? 'Cliente eliminado' : 'No se pudo eliminar',
+        ]);
+    }
 
     public function obtenerClientes(): array
     {

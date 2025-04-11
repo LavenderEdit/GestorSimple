@@ -4,6 +4,7 @@ import { clientTemplate } from "./renderTemplateClientes.js";
 import { guardarCliente } from "./guardarCliente.js";
 import { editarCliente } from "./editarCliente.js";
 import { getClientePorId } from "./infoCliente.js";
+import { eliminarCliente } from "./eliminarCliente.js";
 
 export function initModalClientes() {
   const formAgregarCliente = document.getElementById("formAgregarCliente");
@@ -93,6 +94,41 @@ export function initModalClientes() {
         modalInstance.show();
       } catch (error) {
         console.error("Error al cargar los datos del cliente:", error);
+      }
+    } else if (event.target.classList.contains("btn-eliminar-cliente")) {
+      const idCliente = event.target.getAttribute("data-id");
+
+      if (confirm("¿Estás seguro de que deseas eliminar este cliente?")) {
+        try {
+          const result = await eliminarCliente(idCliente);
+
+          if (result.success) {
+            console.log("Cliente eliminado correctamente");
+
+            buscarClientes("", "todos")
+              .then((clientes) => {
+                renderItems({
+                  containerId: "clienteList",
+                  data: clientes,
+                  emptyMessage: "No se encontraron clientes.",
+                  templateFn: clientTemplate,
+                });
+              })
+              .catch(() => {
+                console.error("Error al obtener clientes luego de eliminar.");
+                renderItems({
+                  containerId: "clienteList",
+                  data: [],
+                  emptyMessage: "No se encontraron clientes.",
+                  templateFn: clientTemplate,
+                });
+              });
+          } else {
+            console.error("Error al eliminar cliente:", result.message);
+          }
+        } catch (error) {
+          console.error("Error al eliminar cliente:", error.message);
+        }
       }
     }
   });
