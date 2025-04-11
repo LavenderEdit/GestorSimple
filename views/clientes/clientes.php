@@ -3,7 +3,7 @@
   Agregar Cliente
 </button>
 
-<!-- Modal Bootstrap 5 -->
+<<!-- Modal Bootstrap 5 -->
 <div class="modal fade" id="modalAgregarCliente" tabindex="-1" aria-labelledby="modalLabel">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content" style="background-color: rgba(33, 37, 41, 1) !important; color: white;">
@@ -15,7 +15,7 @@
       <!-- Único tab activo: INFORMACIÓN -->
       <div class="tab-content">
         <div class="tab-pane fade show active" id="info" role="tabpanel">
-          <form id="formAgregarCliente" method="post" action="router.php?controller=clientes&action=guardar">
+          <form id="formAgregarCliente" method="post" >
             <div class="row g-3 p-3">
               <div class="col-md-6">
                 <label for="num_identificacion" class="form-label">Número de Identificación</label>
