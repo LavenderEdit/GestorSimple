@@ -1,34 +1,37 @@
 <?php
-require_once 'controllers/AuthController.php';
-require_once 'controllers/ClientesController.php';
 
-use Controllers\AuthController;
-use Controllers\ClientesController;
-
-// Obtener los parámetros de la solicitud
-$controllerName = $_GET['controller'] ?? null;
+$controllerName = $_GET['controller'] ?? 'auth';
 $action = $_GET['action'] ?? null;
 
-if ($controllerName && $action) {
-    // Mapear el nombre del controlador a la clase correspondiente
-    switch ($controllerName) {
-        case 'auth':
-            $controller = new AuthController();
-            break;
-        case 'clientes':
-            $controller = new ClientesController();
-            break;
-        default:
-            echo "Controlador no válido.";
-            exit;
-    }
-
-    // Llamar a la acción correspondiente
-    if (method_exists($controller, $action)) {
-        $controller->$action();
-    } else {
-        echo "Acción no válida.";
-    }
-} else {
-    echo "Ruta no válida.";
+if (!$action) {
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'No se ha especificado una acción.']);
+    exit;
 }
+
+switch (strtolower($controllerName)) {
+    case 'auth':
+        require_once 'controllers/AuthController.php';
+        $controller = new \Controllers\AuthController();
+        break;
+    case 'clientes':
+        require_once 'controllers/ClientesController.php';
+        $controller = new \Controllers\ClientesController();
+        break;
+    case 'productos':
+        require_once 'controllers/ProductoController.php';
+        $controller = new \Controllers\ProductoController();
+        break;
+    default:
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Controlador no válido.']);
+        exit;
+}
+
+if (!method_exists($controller, $action)) {
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Acción no válida para este controlador.']);
+    exit;
+}
+
+$controller->{$action}();
