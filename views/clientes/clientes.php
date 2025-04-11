@@ -91,7 +91,7 @@ $clientes = $controller->obtenerClientes();
     </div>
     <div class="col-md-2">
       <select class="form-select" id="searchType" name="searchType">
-        <option value="">Seleccione el tipo de filtrado</option>
+        <option value="todos">Seleccione el tipo de filtrado</option>
         <option value="id">ID Cliente</option>
         <option value="nombre">Nombre Cliente</option>
       </select>
