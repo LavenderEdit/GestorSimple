@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-
+require_once __DIR__ . "/../models/BaseModel.php";
 class Usuario extends BaseModel
 {
     private int $id_usuario;
@@ -10,44 +10,28 @@ class Usuario extends BaseModel
     private int $tipo_id_usuario;
     private int $avatar_id_usuario;
 
-    public function __construct(
-        int $id_usuario = 0,
-        string $nombre = '',
-        string $correo = '',
-        string $contrasenia = '',
-        int $tipo_id_usuario = 0,
-        int $avatar_id_usuario = 0
-    ) {
-        $this->id_usuario = $id_usuario;
-        $this->nombre = $nombre;
-        $this->correo = $correo;
-        $this->contrasenia = $contrasenia;
-        $this->tipo_id_usuario = $tipo_id_usuario;
-        $this->avatar_id_usuario = $avatar_id_usuario;
-    }
-
-    // Métodos para hashear y verificar la contraseña
-    public static function hashPassword(string $password): string
+    public function __construct($pdo)
     {
-        return password_hash($password, PASSWORD_BCRYPT);
-    }
-
-    public static function verifyPassword(string $password, string $hashedPassword): bool
-    {
-        return password_verify($password, $hashedPassword);
+        parent::__construct($pdo);
     }
 
     // Método para autenticar usuario
     public function autenticarUsuario(string $correo, string $password)
     {
-        $usuario = $this->callProcedure('autenticar', [$correo]);
+        $result = $this->callProcedure('autenticar', [$correo]);
 
-        if ($usuario && self::verifyPassword($password, $usuario['contrasenia'])) {
-            unset($usuario['contrasenia']);
-            return $usuario;
+        if ($result && isset($result[0])) {
+            $usuario = $result[0];
+
+            if ($password === $usuario['contrasenia']) {
+                unset($usuario['contrasenia']);
+                return $usuario;
+            }
         }
+
         return false;
     }
+
 
     // Métodos para procedimientos de almacenamientos
     public function crearUsuario($nombre, $correo, $contrasenia, $tipoUsuario)

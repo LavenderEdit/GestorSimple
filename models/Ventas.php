@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-
+require_once __DIR__ . "/../models/BaseModel.php";
 class Ventas extends BaseModel
 {
     private int $id_venta;
@@ -9,18 +9,9 @@ class Ventas extends BaseModel
     private int $id_cliente;
     private int $id_usuario;
 
-    public function __construct(
-        int $id_venta = 0,
-        ?\DateTime $fecha = null,
-        float $total = 0.0,
-        int $id_cliente = 0,
-        int $id_usuario = 0
-    ) {
-        $this->id_venta = $id_venta;
-        $this->fecha = $fecha ?? new \DateTime();
-        $this->total = $total;
-        $this->id_cliente = $id_cliente;
-        $this->id_usuario = $id_usuario;
+    public function __construct($pdo)
+    {
+        parent::__construct($pdo);
     }
 
     // Métodos para procedimientos de almacenamientos
@@ -29,14 +20,9 @@ class Ventas extends BaseModel
         return $this->callProcedure('crear', [$fecha, $total, $id_cliente, $id_usuario]);
     }
 
-    public function obtenerVentas()
+    public function buscar_por_fecha_usuario($id_usuario, $fecha)
     {
-        return $this->callProcedure('visualizar', []);
-    }
-
-    public function obtenerVentaPorId($id)
-    {
-        return $this->callProcedure('visualizar_por_id', [$id]);
+        return $this->callProcedure('buscar_por_fecha_usuario', [$id_usuario, $fecha]);
     }
 
     // Getters y Setters

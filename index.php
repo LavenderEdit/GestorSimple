@@ -1,7 +1,13 @@
-<?php include __DIR__ . '/includes/header.php'; ?>
-<?php include __DIR__ . '/includes/navbar.php'; ?>
+<?php
+include __DIR__ . '/includes/header.php';
+include __DIR__ . '/includes/navbar.php';
 
-<!-- Contenido -->
+require_once __DIR__ . '/controllers/HomeController.php';
 
-<?php include __DIR__ . '/includes/footer-content.php'; ?>
-<?php include __DIR__ . '/includes/scripts.php'; ?>
+use Controllers\HomeController;
+$homeController = new HomeController();
+$homeController->index();
+
+include __DIR__ . '/includes/footer-content.php';
+include __DIR__ . '/includes/scripts.php';
+?>

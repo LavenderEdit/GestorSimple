@@ -1,42 +1,84 @@
 <?php
 namespace Controllers;
 
-use Core\Controller;
+require_once __DIR__ . '/../database/database.php';
+require_once __DIR__ . '/../models/Usuario.php';
+
+use Database\Database;
 use Models\Usuario;
 
-define('BASE_URL', '/GestorSimple/');
-
-class AuthController extends Controller
+class AuthController
 {
-    public function showLoginForm()
+    private Usuario $usuarioModel;
+
+    public function __construct()
     {
-        $this->loadView('auth/login');
+        $pdo = Database::getConnection();
+        $this->usuarioModel = new Usuario($pdo);
     }
 
+    // 🔐 Login de usuario
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
+            session_start();
+            $correo = $_POST['correo'] ?? '';
+            $password = $_POST['contrasenia'] ?? '';
 
-            $usuario = (new Usuario())->autenticarUsuario($email, $password);
+            $usuario = $this->usuarioModel->autenticarUsuario($correo, $password);
 
             if ($usuario) {
-                $_SESSION['usuario'] = $usuario;
-                header("Location: " . BASE_URL . "views/dashboard.php");
+                $_SESSION['usuario'] = [
+                    'id_usuario' => $usuario['id_usuario'],
+                    'nombre' => $usuario['nombre']
+                ];
+
+                header("Location: " . "views/dashboard.php");
                 exit;
             } else {
-                $_SESSION['error_login'] = "Credenciales incorrectas";
-                header("Location: " . BASE_URL . "views/auth/login.php");
+                $_SESSION['error_login'] = "Credenciales incorrectas.";
+                header("Location: " . "views/auth/login.php");
                 exit;
             }
         }
     }
 
+    // 🚪 Cierre de sesión
     public function logout()
     {
+        session_start();
         session_destroy();
-        header("Location: " . BASE_URL);
+        header("Location: " . "/GestorSimple/");
         exit;
+    }
+
+    // 📝 Registro de nuevo usuario
+    public function register()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+            $nombre = $_POST['nombre'] ?? '';
+            $correo = $_POST['correo'] ?? '';
+            $password = $_POST['contrasenia'] ?? '';
+            $tipoUsuario = $_POST['tipo_id_usuario'] ?? 1;
+
+            if (empty($nombre) || empty($correo) || empty($password)) {
+                $_SESSION['error_register'] = "Todos los campos son obligatorios.";
+                header("Location: " . "/GestorSimple/" . "views/auth/register.php");
+                exit;
+            }
+
+            $resultado = $this->usuarioModel->crearUsuario($nombre, $correo, $password, $tipoUsuario);
+
+            if ($resultado) {
+                $_SESSION['success_register'] = "Usuario registrado correctamente.";
+                header("Location: " . "/GestorSimple/" . "views/auth/login.php");
+                exit;
+            } else {
+                $_SESSION['error_register'] = "Error al registrar el usuario.";
+                header("Location: " . "/GestorSimple/" . "views/auth/register.php");
+                exit;
+            }
+        }
     }
 }

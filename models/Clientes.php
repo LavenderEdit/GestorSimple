@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-
+require_once __DIR__ . "/../models/BaseModel.php";
 class Clientes extends BaseModel
 {
     private int $id_cliente;
@@ -11,28 +11,20 @@ class Clientes extends BaseModel
     private string $email;
     private int $id_tipo_cliente;
 
-    public function __construct(
-        int $id_cliente = 0,
-        string $num_identificacion = '',
-        string $nombre = '',
-        string $direccion = '',
-        string $telefono = '',
-        string $email = '',
-        int $id_tipo_cliente = 0
-    ) {
-        $this->id_cliente = $id_cliente;
-        $this->num_identificacion = $num_identificacion;
-        $this->nombre = $nombre;
-        $this->direccion = $direccion;
-        $this->telefono = $telefono;
-        $this->email = $email;
-        $this->id_tipo_cliente = $id_tipo_cliente;
+    public function __construct($pdo)
+    {
+        parent::__construct($pdo);
     }
 
     // Métodos para procedimientos de almacenamientos
     public function crearCliente($num_identificacion, $nombre, $direccion, $telefono, $email, $id_tipo_cliente)
     {
         return $this->callProcedure('crear', [$num_identificacion, $nombre, $direccion, $telefono, $email, $id_tipo_cliente]);
+    }
+
+    public function editarCliente($id_cliente, $num_identificacion, $nombre, $direccion, $telefono, $email, $id_tipo_cliente)
+    {
+        return $this->callProcedure('editar', [$id_cliente, $num_identificacion, $nombre, $direccion, $telefono, $email, $id_tipo_cliente]);
     }
 
     public function obtenerClientes()
@@ -43,6 +35,11 @@ class Clientes extends BaseModel
     public function obtenerClientePorId($id)
     {
         return $this->callProcedure('visualizar_por_id', [$id]);
+    }
+
+    public function obtenerClientesPorNombre($nombre)
+    {
+        return $this->callProcedure('visualizar_por_nombre', [$nombre]);
     }
 
     // Getters y Setters

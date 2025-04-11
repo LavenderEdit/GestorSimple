@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-
+require_once __DIR__ . "/../models/BaseModel.php";
 class Proveedores extends BaseModel
 {
     private int $id_proveedor;
@@ -9,18 +9,9 @@ class Proveedores extends BaseModel
     private string $telefono;
     private string $direccion;
 
-    public function __construct(
-        int $id_proveedor = 0,
-        string $nombre = '',
-        string $email = '',
-        string $telefono = '',
-        string $direccion = ''
-    ) {
-        $this->id_proveedor = $id_proveedor;
-        $this->nombre = $nombre;
-        $this->email = $email;
-        $this->telefono = $telefono;
-        $this->direccion = $direccion;
+    public function __construct($pdo)
+    {
+        parent::__construct($pdo);
     }
 
     // Métodos para procedimientos de almacenamientos
