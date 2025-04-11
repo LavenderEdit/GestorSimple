@@ -87,8 +87,8 @@ class ClientesController
 if (isset($_GET['action']) && $_GET['action'] === 'buscar_clientes') {
     $controller = new ClientesController();
 
-    $valor = $_POST['query'] ?? '';
-    $tipo = $_POST['type'] ?? '';
+    $valor = $_GET['query'] ?? '';
+    $tipo = $_GET['type'] ?? '';
 
     if ($tipo === 'todos') {
         $clientes = $controller->obtenerClientes();

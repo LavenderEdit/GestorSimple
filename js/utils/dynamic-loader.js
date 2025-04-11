@@ -1,7 +1,7 @@
 import { updateHeaderDate } from "../ventas/ventas-date.js";
 import { initBusquedaPorFecha } from "../ventas/fechaVentas.js?v=2";
 import { initProductos } from "../productos/init.js";
-import { initClientes } from "../clientes/initClientes.js";
+import { initClientes } from "../clientes/initClientes.js?v=1";
 
 const pageCallbacks = {
   ventas: () => {

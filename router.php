@@ -25,6 +25,11 @@ switch (strtolower($controllerName)) {
     case 'pagos':
         require_once 'controllers/PagoController.php';
         $controller = new \Controllers\PagoController();
+        break;
+    case 'proveedores':
+        require_once 'controllers/PagoController.php';
+        $controller = new \Controllers\ProveedoresController();
+        break;
     default:
         header('Content-Type: application/json');
         echo json_encode(['error' => 'Controlador no válido.']);

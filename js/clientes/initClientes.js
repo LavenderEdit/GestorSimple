@@ -1,5 +1,6 @@
 import { buscarClientes } from "./buscarClientes.js";
-import { renderizarClientes } from "./renderizarClientes.js";
+import { renderItems } from "../api/renderItems.js";
+import { clientTemplate } from "./renderTemplateClientes.js";
 import { initModalClientes } from "./modalClientes.js";
 
 export function initClientes() {
@@ -19,20 +20,49 @@ export function initClientes() {
 
     if (type === "todos") {
       buscarClientes("", "todos")
-        .done((clientes) => renderizarClientes(clientes))
-        .fail(() => {
+        .then((clientes) => {
+          renderItems({
+            containerId: "clienteList",
+            data: clientes,
+            emptyMessage: "No se encontraron clientes.",
+            templateFn: clientTemplate,
+          });
+        })
+        .catch(() => {
           console.error("Error al obtener todos los clientes.");
-          renderizarClientes([]);
+          renderItems({
+            containerId: "clienteList",
+            data: [],
+            emptyMessage: "No se encontraron clientes.",
+            templateFn: clientTemplate,
+          });
         });
     } else if (query.length > 0 && type !== "") {
       buscarClientes(query, type)
-        .done((clientes) => renderizarClientes(clientes))
-        .fail(() => {
+        .then((clientes) => {
+          renderItems({
+            containerId: "clienteList",
+            data: clientes,
+            emptyMessage: "No se encontraron clientes.",
+            templateFn: clientTemplate,
+          });
+        })
+        .catch(() => {
           console.error("Error al buscar clientes.");
-          renderizarClientes([]);
+          renderItems({
+            containerId: "clienteList",
+            data: [],
+            emptyMessage: "No se encontraron clientes.",
+            templateFn: clientTemplate,
+          });
         });
     } else {
-      renderizarClientes([]);
+      renderItems({
+        containerId: "clienteList",
+        data: [],
+        emptyMessage: "No se encontraron clientes.",
+        templateFn: clientTemplate,
+      });
     }
   };
 
