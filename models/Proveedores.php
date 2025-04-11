@@ -30,6 +30,16 @@ class Proveedores extends BaseModel
         return $this->callProcedure('visualizar_por_id', [$id]);
     }
 
+    public function buscarProveedoresPorNomOId($id_proveedor, $nombre)
+    {
+        return $this->callProcedure('buscar', [$id_proveedor, $nombre]);
+    }
+
+    public function buscarProductosPorProveedor($id_proveedor)
+    {
+        return $this->callProcedure('productos_por', [$id_proveedor]);
+    }
+
     // Getters y Setters
     public function getIdProveedor(): int
     {

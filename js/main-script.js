@@ -1,4 +1,4 @@
-import { runComponentRegistry } from "./script-registry.js?v=9";
+import { runComponentRegistry } from "./script-registry.js?v=10";
 
 document.addEventListener("DOMContentLoaded", function () {
   runComponentRegistry();
