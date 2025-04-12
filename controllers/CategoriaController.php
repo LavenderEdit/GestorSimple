@@ -17,8 +17,12 @@ class CategoriaController
         $this->categoriaModel = new Categoria($pdo);
     }
 
-    public function getCategorias(): array
+    public function getCategorias()
     {
-        return $this->categoriaModel->obtenerCategorias();
+        $data = $this->categoriaModel->obtenerCategorias();
+
+        header('Content-Type: application/json');
+
+        echo json_encode($data);
     }
 }

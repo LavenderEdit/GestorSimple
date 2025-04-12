@@ -30,6 +30,10 @@ switch (strtolower($controllerName)) {
         require_once 'controllers/ProveedoresController.php';
         $controller = new \Controllers\ProveedoresController();
         break;
+    case 'categoria':
+        require_once 'controllers/CategoriaController.php';
+        $controller = new \Controllers\CategoriaController();
+        break;
     default:
         header('Content-Type: application/json');
         echo json_encode(['error' => 'Controlador no válido.']);

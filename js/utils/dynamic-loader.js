@@ -1,8 +1,8 @@
-import { updateHeaderDate } from "../ventas/ventas-date.js";
-import { initBusquedaPorFecha } from "../ventas/fechaVentas.js?v=2";
-import { initProductos } from "../productos/init.js";
-import { initClientes } from "../clientes/initClientes.js?v=2";
-import { initProveedores } from "../proveedores/initProveedores.js";
+import { updateHeaderDate } from "../ventas/ventas-date.js?v=1";
+import { initBusquedaPorFecha } from "../ventas/fechaVentas.js?v=3";
+import { initProductos } from "../productos/initProductos.js?v=1";
+import { initClientes } from "../clientes/initClientes.js?v=3";
+import { initProveedores } from "../proveedores/initProveedores.js?v=1";
 
 const pageCallbacks = {
   ventas: () => {

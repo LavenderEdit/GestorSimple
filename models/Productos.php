@@ -17,9 +17,19 @@ class Productos extends BaseModel
     }
 
     // Métodos para procedimientos de almacenamientos
-    public function crearProducto($nombre, $descripcion, $precio, $stock, $id_categoria, $id_proveedor)
+    public function crearProducto($nombre, $descripcion, $precio, $stock, $id_categoria, $id_proveedor, $ganancia)
     {
-        return $this->callProcedure('crear', [$nombre, $descripcion, $precio, $stock, $id_categoria, $id_proveedor]);
+        return $this->callProcedure('crear', [$nombre, $descripcion, $precio, $stock, $id_categoria, $id_proveedor, $ganancia]);
+    }
+
+    public function updateProducto($id_producto, $nombre, $descripcion, $precio, $stock, $id_categoria, $id_proveedor, $ganancia)
+    {
+        return $this->callProcedure('editar', [$id_producto, $nombre, $descripcion, $precio, $stock, $id_categoria, $id_proveedor, $ganancia]);
+    }
+
+    public function deleteProducto($id_producto)
+    {
+        return $this->callProcedure('eliminar_total', [$id_producto]);
     }
 
     public function obtenerProductos()

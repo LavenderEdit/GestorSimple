@@ -27,8 +27,16 @@ export function apiRequest(controller, action, method = "GET", data = null) {
     }
 
     $.ajax(ajaxOptions)
-      .done((responseData) => {
-        resolve(responseData);
+      .done((responseData, textStatus, jqXHR) => {
+        if (jqXHR.status === 200) {
+          resolve(responseData);
+        } else {
+          reject(
+            new Error(
+              `Error en la solicitud: ${jqXHR.status} ${jqXHR.statusText}`
+            )
+          );
+        }
       })
       .fail((jqXHR, textStatus, errorThrown) => {
         reject(

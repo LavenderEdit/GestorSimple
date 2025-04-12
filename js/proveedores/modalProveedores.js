@@ -1,5 +1,5 @@
 import { renderItems } from "../api/renderItems.js";
-import { proveedorTemplate } from "./renderTemplateProveedores.js";
+import { proveedorLiTemplate } from "./renderTemplateProveedores.js";
 import {
   guardarProveedor,
   editarProveedor,
@@ -49,7 +49,7 @@ export function initModalProveedores() {
           containerId: "proveedorList",
           data: proveedores,
           emptyMessage: "No se encontraron proveedores.",
-          templateFn: proveedorTemplate,
+          templateFn: proveedorLiTemplate,
         });
       } else {
         console.error("Error en operación:", response.message);
@@ -107,7 +107,7 @@ export function initModalProveedores() {
               containerId: "proveedorList",
               data: proveedores,
               emptyMessage: "No se encontraron proveedores.",
-              templateFn: proveedorTemplate,
+              templateFn: proveedorLiTemplate,
             });
           } else {
             console.error("Error al eliminar proveedor:", result.message);
