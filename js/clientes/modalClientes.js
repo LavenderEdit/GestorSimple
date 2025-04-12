@@ -1,10 +1,12 @@
-import { buscarClientes } from "./buscarClientes.js";
 import { renderItems } from "../api/renderItems.js";
 import { clientTemplate } from "./renderTemplateClientes.js";
-import { guardarCliente } from "./guardarCliente.js";
-import { editarCliente } from "./editarCliente.js";
-import { getClientePorId } from "./infoCliente.js";
-import { eliminarCliente } from "./eliminarCliente.js";
+import {
+  buscarClientes,
+  guardarCliente,
+  editarCliente,
+  getClientePorId,
+  eliminarCliente,
+} from "./ClienteController.js";
 
 export function initModalClientes() {
   const formAgregarCliente = document.getElementById("formAgregarCliente");

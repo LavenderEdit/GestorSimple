@@ -27,7 +27,7 @@ switch (strtolower($controllerName)) {
         $controller = new \Controllers\PagoController();
         break;
     case 'proveedores':
-        require_once 'controllers/PagoController.php';
+        require_once 'controllers/ProveedoresController.php';
         $controller = new \Controllers\ProveedoresController();
         break;
     default:

@@ -1,4 +1,4 @@
-import { buscarClientes } from "./buscarClientes.js";
+import { buscarClientes } from "./ClienteController.js";
 import { renderItems } from "../api/renderItems.js";
 import { clientTemplate } from "./renderTemplateClientes.js";
 import { initModalClientes } from "./modalClientes.js?v=1";

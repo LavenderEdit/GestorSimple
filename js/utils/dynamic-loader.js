@@ -2,6 +2,7 @@ import { updateHeaderDate } from "../ventas/ventas-date.js";
 import { initBusquedaPorFecha } from "../ventas/fechaVentas.js?v=2";
 import { initProductos } from "../productos/init.js";
 import { initClientes } from "../clientes/initClientes.js?v=2";
+import { initProveedores } from "../proveedores/initProveedores.js";
 
 const pageCallbacks = {
   ventas: () => {
@@ -13,6 +14,9 @@ const pageCallbacks = {
   },
   clientes: () => {
     initClientes();
+  },
+  proveedores: () => {
+    initProveedores();
   },
   // Cualquier otra función de otra página que sea definida aquí
   //Ejm: dashboard: () => { ... },

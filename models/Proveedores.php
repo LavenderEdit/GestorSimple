@@ -20,6 +20,16 @@ class Proveedores extends BaseModel
         return $this->callProcedure('crear', [$nombre, $email, $telefono, $direccion]);
     }
 
+    public function editarProveedor($id_proveedor, $nombre, $email, $telefono, $direccion)
+    {
+        return $this->callProcedure('editar', [$id_proveedor, $nombre, $email, $telefono, $direccion]);
+    }
+
+    public function eliminarProveedor($id_proveedor)
+    {
+        return $this->callProcedure('eliminar_total', [$id_proveedor]);
+    }
+
     public function obtenerProveedores()
     {
         return $this->callProcedure('visualizar', []);
