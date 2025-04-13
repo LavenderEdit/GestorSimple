@@ -18,6 +18,16 @@ class Metodo_Pago extends BaseModel
         return $this->callProcedure('crear', [$nombre, $descripcion]);
     }
 
+    public function editarMetodo_Pago($id, $nombre, $descripcion)
+    {
+        return $this->callProcedure('editar', [$id, $nombre, $descripcion]);
+    }
+
+    public function eliminarMetodo_Pago($id)
+    {
+        return $this->callProcedure('eliminar_total', [$id]);
+    }
+
     public function obtenerMetodos_Pagos()
     {
         return $this->callProcedure('visualizar', []);

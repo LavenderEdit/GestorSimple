@@ -9,7 +9,7 @@ import { categoriaOptionTemplate } from "../categoria/renderTemplateCategoria.js
 import { proveedorOptionTemplate } from "../proveedores/renderTemplateProveedores.js";
 import { renderItems } from "../api/renderItems.js";
 import { productoLiTemplate } from "./renderTemplateProductos.js?v=1";
-import { initModalProductos } from "./modalProductos.js";
+import { initModalProductos } from "./modalProductos.js?v=1";
 
 export function initProductos() {
   initModalProductos();

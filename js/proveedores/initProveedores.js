@@ -4,7 +4,7 @@ import {
 } from "./ProveedorController.js";
 import { renderItems } from "../api/renderItems.js";
 import { proveedorLiTemplate } from "./renderTemplateProveedores.js?v=1";
-import { initModalProveedores } from "./modalProveedores.js?v=2";
+import { initModalProveedores } from "./modalProveedores.js?v=3";
 
 export function initProveedores() {
   initModalProveedores();

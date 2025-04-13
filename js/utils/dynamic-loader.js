@@ -1,13 +1,15 @@
-import { updateHeaderDate } from "../ventas/ventas-date.js?v=1";
-import { initBusquedaPorFecha } from "../ventas/fechaVentas.js?v=3";
-import { initProductos } from "../productos/initProductos.js?v=1";
-import { initClientes } from "../clientes/initClientes.js?v=3";
-import { initProveedores } from "../proveedores/initProveedores.js?v=1";
+import { initVentas } from "../ventas/initVentas.js";
+import { initProductos } from "../productos/initProductos.js?v=2";
+import { initClientes } from "../clientes/initClientes.js?v=4";
+import { initProveedores } from "../proveedores/initProveedores.js?v=2";
+import { initCategoria } from "../categoria/initCategoria.js";
+import { initTipoCliente } from "../tipocliente/initTipoCliente.js";
+import { initTipoUsuario } from "../tipousuario/initTipoUsuario.js";
+import { initMetodoPago } from "../metodopago/initMetodoPago.js";
 
 const pageCallbacks = {
   ventas: () => {
-    updateHeaderDate(".header-date");
-    initBusquedaPorFecha();
+    initVentas();
   },
   productos: () => {
     initProductos();
@@ -18,8 +20,18 @@ const pageCallbacks = {
   proveedores: () => {
     initProveedores();
   },
-  // Cualquier otra función de otra página que sea definida aquí
-  //Ejm: dashboard: () => { ... },
+  categorias: () => {
+    initCategoria();
+  },
+  tipos_usuario: () => {
+    initTipoUsuario();
+  },
+  tipos_cliente: () => {
+    initTipoCliente();
+  },
+  metodos_pago: () => {
+    initMetodoPago();
+  },
 };
 
 export function loadPageContent(page) {
@@ -46,6 +58,15 @@ export function loadPageContent(page) {
       break;
     case "categorias":
       file = "views/categorias/categorias.php";
+      break;
+    case "tipos_usuario":
+      file = "views/tipousuario/tipousuario.php";
+      break;
+    case "tipos_cliente":
+      file = "views/tipocliente/tipocliente.php";
+      break;
+    case "metodos_pago":
+      file = "views/metodopago/metodopago.php";
       break;
     default:
       file = "views/error/404.php";

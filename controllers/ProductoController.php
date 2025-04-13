@@ -148,7 +148,7 @@ class ProductoController
             }
 
         } catch (\Exception $e) {
-            error_log("Error en obtenerClientesPorFiltrado: " . $e->getMessage());
+            error_log("Error en buscarFiltro: " . $e->getMessage());
             http_response_code(400);
             echo json_encode(['error' => true, 'message' => $e->getMessage()]);
         }

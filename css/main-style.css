@@ -6,3 +6,17 @@
 body {
     background-color: rgba(33, 37, 41, 1) !important;
 }
+
+.modal-anchura-media {
+    max-width: 700px;
+    width: 90%;
+}
+
+.datepicker {
+    background-color: white !important;
+    color: black;
+}
+
+.datepicker table tr td.day:hover {
+    background-color: #f0f0f0;
+}

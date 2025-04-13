@@ -20,6 +20,21 @@ class Ventas extends BaseModel
         return $this->callProcedure('crear', [$fecha, $total, $id_cliente, $id_usuario]);
     }
 
+    public function obtenerTodasLasVentas()
+    {
+        return $this->callProcedure('visualizar', []);
+    }
+
+    public function obtenerPorId($id_venta)
+    {
+        return $this->callProcedure('visualizar_por_id', [$id_venta]);
+    }
+
+    public function obtenerInfoVentaPorId($id_venta): array 
+    {
+        return $this->callProcedure('info', [$id_venta]);
+    }
+
     public function buscar_por_fecha_usuario($id_usuario, $fecha)
     {
         return $this->callProcedure('buscar_por_fecha_usuario', [$id_usuario, $fecha]);

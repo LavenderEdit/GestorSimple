@@ -18,6 +18,16 @@ class TipoCliente extends BaseModel
         return $this->callProcedure('crear', [$nombre, $descripcion]);
     }
 
+    public function editarTipoCliente($id, $nombre, $descripcion)
+    {
+        return $this->callProcedure('editar', [$id, $nombre, $descripcion]);
+    }
+
+    public function eliminarTipoCliente($id)
+    {
+        return $this->callProcedure('eliminar_total', [$id]);
+    }
+
     public function obtenerTiposClientes()
     {
         return $this->callProcedure('visualizar', []);

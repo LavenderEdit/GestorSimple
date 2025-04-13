@@ -18,6 +18,16 @@ class Categoria extends BaseModel
         return $this->callProcedure('crear', [$nombre, $descripcion]);
     }
 
+    public function editarCategoria($id, $nombre, $descripcion)
+    {
+        return $this->callProcedure('editar', [$id, $nombre, $descripcion]);
+    }
+
+    public function eliminarCategoria($id)
+    {
+        return $this->callProcedure('eliminar_total', [$id]);
+    }
+
     public function obtenerCategorias()
     {
         return $this->callProcedure('visualizar', []);

@@ -17,7 +17,6 @@ class AuthController
         $this->usuarioModel = new Usuario($pdo);
     }
 
-    // 🔐 Login de usuario
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,7 +29,8 @@ class AuthController
             if ($usuario) {
                 $_SESSION['usuario'] = [
                     'id_usuario' => $usuario['id_usuario'],
-                    'nombre' => $usuario['nombre']
+                    'nombre' => $usuario['nombre'],
+                    'id_tipo_usuario' => $usuario['tipo_id_usuario']
                 ];
 
                 header("Location: " . "views/dashboard.php");
@@ -43,7 +43,6 @@ class AuthController
         }
     }
 
-    // 🚪 Cierre de sesión
     public function logout()
     {
         session_start();
@@ -52,7 +51,6 @@ class AuthController
         exit;
     }
 
-    // 📝 Registro de nuevo usuario
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
