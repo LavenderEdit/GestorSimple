@@ -6,6 +6,7 @@ import { initCategoria } from "../categoria/initCategoria.js";
 import { initTipoCliente } from "../tipocliente/initTipoCliente.js";
 import { initTipoUsuario } from "../tipousuario/initTipoUsuario.js";
 import { initMetodoPago } from "../metodopago/initMetodoPago.js";
+import { initPagos } from "../pagos/initPagos.js";
 
 const pageCallbacks = {
   ventas: () => {
@@ -31,6 +32,9 @@ const pageCallbacks = {
   },
   metodos_pago: () => {
     initMetodoPago();
+  },
+  pagos: () => {
+    initPagos();
   },
 };
 

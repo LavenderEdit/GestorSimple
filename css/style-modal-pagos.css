@@ -1,0 +1,6 @@
+.btn-close-red {
+    filter: invert(28%) sepia(91%) saturate(745%) hue-rotate(340deg) brightness(91%) contrast(192%);
+  }
+  .btn-close-red:hover {
+    filter: invert(28%) sepia(91%) saturate(745%) hue-rotate(340deg) brightness(91%) contrast(192%);
+  }
