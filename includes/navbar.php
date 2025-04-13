@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-lg"
     style="background: linear-gradient(45deg, #1a1a1a, #2d2d2d);">
     <div class="container">

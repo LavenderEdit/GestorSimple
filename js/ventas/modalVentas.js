@@ -55,6 +55,40 @@ export function initModalVentas() {
       const modalElement = document.getElementById("comprobanteModal");
       const modalInstance = new bootstrap.Modal(modalElement);
       modalInstance.show();
+
+      const btnEnviarEmail = document.querySelector(
+        "#comprobanteModal .btn.btn-primary:nth-child(1)"
+      );
+      if (btnEnviarEmail) {
+        btnEnviarEmail.onclick = async () => {
+          const correoDestino = prompt("Ingresa el correo del cliente:");
+          if (!correoDestino) return alert("Correo no ingresado.");
+
+          try {
+            const response = await fetch("./php/enviarCorreoVenta.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                cliente: venta.nombre_cliente,
+                usuario: venta.nombre_usuario,
+                fecha: venta.fecha,
+                total: venta.total,
+                correo: correoDestino,
+              }),
+            });
+
+            const result = await response.json();
+            if (result.success) {
+              alert("Correo enviado correctamente.");
+            } else {
+              alert("Success: " + result.message);
+            }
+          } catch (err) {
+            console.error("Error al enviar correo:", err);
+            alert("No se pudo enviar el correo.");
+          }
+        };
+      }
     } catch (error) {
       console.error("Error al cargar la información de la venta:", error);
     }
