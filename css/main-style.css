@@ -2,6 +2,7 @@
 @import url('./style-footer-content.css?v=1');
 @import url('./style-sidebar.css?v=1');
 @import url('./style-cards.css');
+@import url('./style-modal-pagos.css');
 
 body {
     background-color: rgba(33, 37, 41, 1) !important;
