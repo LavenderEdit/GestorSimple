@@ -92,7 +92,8 @@ export function initModalClientes() {
 
         modalAgregarCliente.querySelector(".modal-title").textContent =
           "Editar Cliente";
-        const modalInstance = new bootstrap.Modal(modalAgregarCliente);
+        const modalInstance =
+          bootstrap.Modal.getOrCreateInstance(modalAgregarCliente);
         modalInstance.show();
       } catch (error) {
         console.error("Error al cargar los datos del cliente:", error);
@@ -133,5 +134,12 @@ export function initModalClientes() {
         }
       }
     }
+  });
+
+  modalAgregarCliente.addEventListener("hidden.bs.modal", () => {
+    formAgregarCliente.reset();
+    formAgregarCliente.querySelector('[name="id_cliente"]').value = "";
+    modalAgregarCliente.querySelector(".modal-title").textContent =
+      "Agregar Cliente";
   });
 }

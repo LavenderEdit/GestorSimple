@@ -18,6 +18,16 @@ class TipoUsuario extends BaseModel
         return $this->callProcedure('crear', [$nombre, $descripcion]);
     }
 
+    public function editarTipoUsuario($id, $nombre, $descripcion)
+    {
+        return $this->callProcedure('editar', [$id, $nombre, $descripcion]);
+    }
+
+    public function eliminarTipoUsuario($id)
+    {
+        return $this->callProcedure('eliminar_total', [$id]);
+    }
+
     public function obtenerTiposUsuarios()
     {
         return $this->callProcedure('visualizar', []);

@@ -1,5 +1,5 @@
 import { sidebarConfig } from "./sidebar-config.js";
-import { loadPageContent } from "../utils/dynamic-loader.js?v=10";
+import { loadPageContent } from "../utils/dynamic-loader.js?v=12";
 
 export function initSidebar() {
   const { sidebarId, contentClass, sidebarWidth } = sidebarConfig;

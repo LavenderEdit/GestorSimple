@@ -3,8 +3,8 @@ import {
   obtenerProveedoresPorNomOId,
 } from "./ProveedorController.js";
 import { renderItems } from "../api/renderItems.js";
-import { proveedorTemplate } from "./renderTemplateProveedores.js";
-import { initModalProveedores } from "./modalProveedores.js?v=1";
+import { proveedorLiTemplate } from "./renderTemplateProveedores.js?v=1";
+import { initModalProveedores } from "./modalProveedores.js?v=3";
 
 export function initProveedores() {
   initModalProveedores();
@@ -23,7 +23,7 @@ export function initProveedores() {
         containerId: "proveedorList",
         data: proveedores,
         emptyMessage: "No se encontraron proveedores.",
-        templateFn: proveedorTemplate,
+        templateFn: proveedorLiTemplate,
       });
     })
     .catch(() => {
@@ -32,7 +32,7 @@ export function initProveedores() {
         containerId: "proveedorList",
         data: [],
         emptyMessage: "No se encontraron proveedores.",
-        templateFn: proveedorTemplate,
+        templateFn: proveedorLiTemplate,
       });
     });
 
@@ -47,7 +47,7 @@ export function initProveedores() {
             containerId: "proveedorList",
             data: proveedores,
             emptyMessage: "No se encontraron proveedores.",
-            templateFn: proveedorTemplate,
+            templateFn: proveedorLiTemplate,
           });
         })
         .catch(() => {
@@ -55,7 +55,7 @@ export function initProveedores() {
             containerId: "proveedorList",
             data: [],
             emptyMessage: "No se encontraron proveedores.",
-            templateFn: proveedorTemplate,
+            templateFn: proveedorLiTemplate,
           });
         });
     } else if (query.length > 0 && (type === "nombre" || type === "id")) {
@@ -65,7 +65,7 @@ export function initProveedores() {
             containerId: "proveedorList",
             data: proveedores,
             emptyMessage: "No se encontraron proveedores.",
-            templateFn: proveedorTemplate,
+            templateFn: proveedorLiTemplate,
           });
         })
         .catch(() => {
@@ -73,7 +73,7 @@ export function initProveedores() {
             containerId: "proveedorList",
             data: [],
             emptyMessage: "No se encontraron proveedores.",
-            templateFn: proveedorTemplate,
+            templateFn: proveedorLiTemplate,
           });
         });
     } else {
@@ -81,7 +81,7 @@ export function initProveedores() {
         containerId: "proveedorList",
         data: [],
         emptyMessage: "No se encontraron proveedores.",
-        templateFn: proveedorTemplate,
+        templateFn: proveedorLiTemplate,
       });
     }
   };

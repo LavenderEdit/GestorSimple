@@ -1,4 +1,4 @@
-export function proveedorTemplate(proveedor) {
+export function proveedorLiTemplate(proveedor) {
   return `
       <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
@@ -21,4 +21,8 @@ export function proveedorTemplate(proveedor) {
         </div>
       </li>
     `;
+}
+
+export function proveedorOptionTemplate(proveedor) {
+  return `<option value="${proveedor.id_proveedor}">${proveedor.nombre}</option>`;
 }

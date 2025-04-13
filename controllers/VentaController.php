@@ -16,25 +16,80 @@ class VentaController
         $this->ventas = new Ventas($pdo);
     }
 
-    public function getVentasPorFechaYUsuario(): array
+    public function buscarPorFecha()
     {
+        header('Content-Type: application/json');
         session_start();
-        $id_usuario = $_SESSION['usuario']['id_usuario'] ?? null;
-        $fecha = $_POST['fecha'] ?? null;
 
-        if ($id_usuario && $fecha) {
-            return $this->ventas->buscar_por_fecha_usuario($id_usuario, $fecha);
+        try {
+            $id_usuario = $_SESSION['usuario']['id_usuario'] ?? null;
+            $fecha = $_GET['fecha'] ?? null;
+
+            if ($id_usuario && $fecha) {
+                $data = $this->ventas->buscar_por_fecha_usuario($id_usuario, $fecha);
+
+                echo json_encode($data);
+            }
+        } catch (\Exception $e) {
+            error_log("Error en buscarPorFecha: " . $e->getMessage());
+            http_response_code(400);
+            echo json_encode(['error' => true, 'message' => $e->getMessage()]);
         }
-
-        return [];
     }
 
-}
+    public function getAllVentas()
+    {
+        $data = $this->ventas->obtenerTodasLasVentas();
 
-if (isset($_GET['action']) && $_GET['action'] === 'buscar_por_fecha') {
-    $controller = new VentaController();
-    $ventas = $controller->getVentasPorFechaYUsuario();
-    header('Content-Type: application/json');
-    echo json_encode($ventas);
+        header('Content-Type: application/json');
+
+        echo json_encode($data);
+    }
+
+    public function obtenerInfoModal()
+    {
+        try {
+            if (!isset($_GET['id'])) {
+                throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
+            }
+
+            $id_venta = filter_var(trim($_GET['id']), FILTER_SANITIZE_STRING);
+
+            $data = $this->ventas->obtenerInfoVentaPorId($id_venta);
+
+            header('Content-Type: application/json');
+
+            echo json_encode($data);
+        } catch (\Exception $e) {
+            error_log("Error en: obtenerInfoModal" . $e->getMessage());
+            return [
+                'error' => true,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function obtenerInfo()
+    {
+        try {
+            if (!isset($_GET['id'])) {
+                throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
+            }
+
+            $id_venta = filter_var(trim($_GET['id']), FILTER_SANITIZE_STRING);
+
+            $data = $this->ventas->obtenerPorId($id_venta);
+
+            header('Content-Type: application/json');
+
+            echo json_encode($data);
+        } catch (\Exception $e) {
+            error_log("Error en: obtenerInfo" . $e->getMessage());
+            return [
+                'error' => true,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
 }
 

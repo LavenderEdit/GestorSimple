@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <?php include __DIR__ . '/../includes/header.php'; ?>
 
 <?php include __DIR__ . '/../includes/sidebar.php'; ?>

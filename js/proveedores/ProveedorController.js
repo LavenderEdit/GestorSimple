@@ -1,6 +1,6 @@
 import { apiRequest } from "../api/apiRequest.js";
 
-// 5 métodos CRUD para desarrollar a los proveedores
+// 4 métodos CRUD para desarrollar a los proveedores
 export async function guardarProveedor(formData) {
   try {
     const data = await apiRequest(

@@ -1,5 +1,5 @@
 import { renderItems } from "../api/renderItems.js";
-import { proveedorTemplate } from "./renderTemplateProveedores.js";
+import { proveedorLiTemplate } from "./renderTemplateProveedores.js";
 import {
   guardarProveedor,
   editarProveedor,
@@ -19,7 +19,6 @@ export function initModalProveedores() {
     return;
   }
 
-  // Envío del formulario (Agregar o Editar)
   formAgregarProveedor.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -49,7 +48,7 @@ export function initModalProveedores() {
           containerId: "proveedorList",
           data: proveedores,
           emptyMessage: "No se encontraron proveedores.",
-          templateFn: proveedorTemplate,
+          templateFn: proveedorLiTemplate,
         });
       } else {
         console.error("Error en operación:", response.message);
@@ -59,7 +58,6 @@ export function initModalProveedores() {
     }
   });
 
-  // Eventos para Editar o Eliminar
   document.addEventListener("click", async (event) => {
     if (event.target.classList.contains("btn-editar-proveedor")) {
       const idProveedor = event.target.getAttribute("data-id");
@@ -68,7 +66,6 @@ export function initModalProveedores() {
         const response = await getProveedorPorId(idProveedor);
         const proveedor = response[0];
 
-        // Solo llenar los campos que existen en el formulario
         const form = formAgregarProveedor;
         form.querySelector('[name="id_proveedor"]').value =
           proveedor.id_proveedor || "";
@@ -79,16 +76,15 @@ export function initModalProveedores() {
         form.querySelector('[name="direccion"]').value =
           proveedor.direccion || "";
 
-        // Actualizar título del modal
         modalAgregarProveedor.querySelector(".modal-title").textContent =
           "Editar Proveedor";
 
-        // Mostrar modal
-        const modalInstance = new bootstrap.Modal(modalAgregarProveedor);
+        const modalInstance = bootstrap.Modal.getOrCreateInstance(
+          modalAgregarProveedor
+        );
         modalInstance.show();
       } catch (error) {
         console.error("Error al obtener datos del proveedor:", error);
-        // Mostrar mensaje de error al usuario
         alert("Error al cargar los datos del proveedor: " + error.message);
       }
     }
@@ -107,7 +103,7 @@ export function initModalProveedores() {
               containerId: "proveedorList",
               data: proveedores,
               emptyMessage: "No se encontraron proveedores.",
-              templateFn: proveedorTemplate,
+              templateFn: proveedorLiTemplate,
             });
           } else {
             console.error("Error al eliminar proveedor:", result.message);
@@ -117,5 +113,11 @@ export function initModalProveedores() {
         }
       }
     }
+  });
+  modalAgregarProveedor.addEventListener("hidden.bs.modal", () => {
+    formAgregarProveedor.reset();
+    formAgregarProveedor.querySelector('[name="id_cliente"]').value = "";
+    modalAgregarProveedor.querySelector(".modal-title").textContent =
+      "Agregar Proveedor";
   });
 }
