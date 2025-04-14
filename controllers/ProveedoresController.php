@@ -18,8 +18,6 @@ class ProveedoresController
     }
 
 
-
-
     public function insertarProveedor()
     {
         $nombre = trim($_POST['nombre'] ?? '');

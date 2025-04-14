@@ -1,3 +1,7 @@
+import { obtenerTodosLosProductos } from "./ProductoController.js";
+import { renderItems } from "../api/renderItems.js";
+import { productoLiTemplate } from "./renderTemplateProductos.js?v=1";
+
 export function initCalcularPrecioFinal() {
   const precioInput = document.getElementById("precioProducto");
   const gananciaInput = document.getElementById("gananciaProducto");
@@ -24,4 +28,18 @@ export function initCalcularPrecioFinal() {
 
   precioInput.addEventListener("input", calcularPrecioFinal);
   gananciaInput.addEventListener("input", calcularPrecioFinal);
+}
+
+export async function actualizarListaProductos() {
+  try {
+    const productos = await obtenerTodosLosProductos();
+    renderItems({
+      containerId: "productoList",
+      data: Array.isArray(productos) ? productos : [],
+      emptyMessage: "No se encontraron productos.",
+      templateFn: productoLiTemplate,
+    });
+  } catch (error) {
+    console.error("Error al actualizar la lista de productos:", error);
+  }
 }

@@ -1,6 +1,6 @@
 import { initVentas } from "../ventas/initVentas.js";
-import { initProductos } from "../productos/initProductos.js?v=2";
-import { initClientes } from "../clientes/initClientes.js?v=4";
+import { initProductos } from "../productos/initProductos.js?v=3";
+import { initClientes } from "../clientes/initClientes.js?v=5";
 import { initProveedores } from "../proveedores/initProveedores.js?v=5";
 import { initCategoria } from "../categoria/initCategoria.js";
 import { initTipoCliente } from "../tipocliente/initTipoCliente.js";
@@ -85,6 +85,8 @@ export function loadPageContent(page) {
       return response.text();
     })
     .then((html) => {
+      document.querySelectorAll(".modal").forEach((modal) => modal.remove());
+
       const content = document.getElementById("main-content");
       if (content) {
         content.innerHTML = html;

@@ -84,6 +84,13 @@ class ClientesController
         return $this->clientesModel->obtenerClientes();
     }
 
+    public function getAllClientes()
+    {
+        $data = $this->clientesModel->obtenerClientes();
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+
     public function obtenerClientePorId_Param($id)
     {
         return $this->clientesModel->obtenerClientePorId($id);

@@ -3,60 +3,86 @@ import {
   editarProducto,
   eliminarProducto,
   buscarPorId,
-  obtenerTodosLosProductos,
 } from "./ProductoController.js?v=1";
 import { getAllCategorias } from "../categoria/CategoriaController.js";
 import { getTodosLosProveedores } from "../proveedores/ProveedorController.js";
 import { renderOptions } from "../api/renderOptions.js";
-import { renderItems } from "../api/renderItems.js";
 import { categoriaOptionTemplate } from "../categoria/renderTemplateCategoria.js";
 import { proveedorOptionTemplate } from "../proveedores/renderTemplateProveedores.js";
-import { productoLiTemplate } from "./renderTemplateProductos.js?v=1";
-import { initCalcularPrecioFinal } from "./productMethods.js";
+import {
+  initCalcularPrecioFinal,
+  actualizarListaProductos,
+} from "./productMethods.js?v=1";
 
 export function initModalProductos() {
-  const formAgregarProducto = document.getElementById("formAgregarProducto");
-  const modalAgregarProducto = document.getElementById("modalAgregarProducto");
+  const formProducto = document.getElementById("formAgregarProducto");
+  const modalProducto = document.getElementById("modalAgregarProducto");
+  const btnRegistrar = document.getElementById("btnRegistrarProducto");
+  const listaProducto = document.getElementById("productoList");
 
-  if (!formAgregarProducto || !modalAgregarProducto) {
+  if (!formProducto || !modalProducto) {
     console.warn(
       "El formulario o el modal de productos no se encontró en el DOM."
     );
     return;
   }
 
-  formAgregarProducto.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const formData = new FormData(formAgregarProducto);
+  if (btnRegistrar) {
+    btnRegistrar.addEventListener("click", () => {
+      formProducto.reset();
+      const hiddenId = formProducto.querySelector('[name="id_producto"]');
+      if (hiddenId) hiddenId.value = "";
+      modalProducto.querySelector(".modal-title").textContent =
+        "Registrar Producto";
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalProducto);
+      modalInstance.show();
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+      getAllCategorias()
+        .then((categorias) => {
+          renderOptions(
+            "categoriaProducto",
+            categorias,
+            categoriaOptionTemplate
+          );
+        })
+        .catch((error) => console.error("Error al cargar categorías:", error));
+
+      getTodosLosProveedores()
+        .then((proveedores) => {
+          renderOptions(
+            "proveedorProducto",
+            proveedores,
+            proveedorOptionTemplate
+          );
+        })
+        .catch((error) => console.error("Error al cargar proveedores:", error));
+
+      initCalcularPrecioFinal();
+    });
+  }
+
+  formProducto.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(formProducto);
+    const idProductoValue = (formData.get("id_producto") || "")
+      .toString()
+      .trim();
 
     try {
       let data;
-      if (formData.get("id_producto")) {
+      if (idProductoValue !== "") {
         data = await editarProducto(formData);
       } else {
         data = await guardarProducto(formData);
       }
 
       if (data.success) {
-        console.log("Operación realizada correctamente.");
+        console.log("Operación realizada correctamente:", data.message);
         const modalInstance =
-          bootstrap.Modal.getOrCreateInstance(modalAgregarProducto);
-        if (modalInstance) {
-          modalInstance.hide();
-        }
-        formAgregarProducto.reset();
-
-        const productos = await obtenerTodosLosProductos();
-        renderItems({
-          containerId: "productoList",
-          data: productos,
-          emptyMessage: "No se encontraron productos.",
-          templateFn: productoLiTemplate,
-        });
+          bootstrap.Modal.getOrCreateInstance(modalProducto);
+        modalInstance.hide();
+        formProducto.reset();
+        actualizarListaProductos();
       } else {
         console.error("Error en la operación:", data.message);
       }
@@ -65,92 +91,70 @@ export function initModalProductos() {
     }
   });
 
-  document.addEventListener("click", async (event) => {
-    if (
-      event.target.classList.contains("btn-editar-producto") ||
-      event.target.closest(".btn-editar-producto")
-    ) {
-      const btn = event.target.closest(".btn-editar-producto");
-      const idProducto = btn.getAttribute("data-id");
-
-      try {
-        const response = await buscarPorId(idProducto);
-        const producto = Array.isArray(response) ? response[0] : response;
-
-        formAgregarProducto.querySelector('[name="id_producto"]').value =
-          producto.id_producto;
-        formAgregarProducto.querySelector('[name="nombre"]').value =
-          producto.nombre;
-        formAgregarProducto.querySelector('[name="precio"]').value =
-          producto.precio;
-        formAgregarProducto.querySelector('[name="stock"]').value =
-          producto.stock;
-        formAgregarProducto.querySelector('[name="ganancia"]').value =
-          producto.ganancia;
-        formAgregarProducto.querySelector('[name="precio_final"]').value =
-          producto.precio_final;
-        formAgregarProducto.querySelector('[name="id_categoria"]').value =
-          producto.id_categoria;
-        formAgregarProducto.querySelector('[name="id_proveedor"]').value =
-          producto.id_proveedor;
-        formAgregarProducto.querySelector('[name="descripcion"]').value =
-          producto.descripcion;
-
-        modalAgregarProducto.querySelector(".modal-title").textContent =
-          "Editar Producto";
-
-        const modalInstance = new bootstrap.Modal(modalAgregarProducto);
-        modalInstance.show();
-      } catch (error) {
-        console.error("Error al cargar los datos del producto:", error);
-      }
-    } else if (
-      event.target.classList.contains("btn-eliminar-producto") ||
-      event.target.closest(".btn-eliminar-producto")
-    ) {
-      const btn = event.target.closest(".btn-eliminar-producto");
-      const idProducto = btn.getAttribute("data-id");
-      if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+  if (listaProducto) {
+    listaProducto.addEventListener("click", async (event) => {
+      const btnEditar = event.target.closest(".btn-editar-producto");
+      if (btnEditar) {
+        event.stopPropagation();
+        const idProducto = btnEditar.getAttribute("data-id");
         try {
-          const result = await eliminarProducto(idProducto);
-          if (result.success) {
-            console.log("Producto eliminado correctamente.");
-            const productos = await obtenerTodosLosProductos();
-            renderItems({
-              containerId: "productoList",
-              data: productos,
-              emptyMessage: "No se encontraron productos.",
-              templateFn: productoLiTemplate,
-            });
-          } else {
-            console.error("Error al eliminar producto:", result.message);
+          const response = await buscarPorId(idProducto);
+          const producto = Array.isArray(response) ? response[0] : response;
+          if (!producto) {
+            console.error("No se encontró el producto con id:", idProducto);
+            return;
           }
+          formProducto.querySelector('[name="id_producto"]').value =
+            producto.id_producto;
+          formProducto.querySelector('[name="nombre"]').value = producto.nombre;
+          formProducto.querySelector('[name="precio"]').value = producto.precio;
+          formProducto.querySelector('[name="stock"]').value = producto.stock;
+          formProducto.querySelector('[name="ganancia"]').value =
+            producto.ganancia;
+          formProducto.querySelector('[name="precio_final"]').value =
+            producto.precio_final;
+          formProducto.querySelector('[name="id_categoria"]').value =
+            producto.id_categoria;
+          formProducto.querySelector('[name="id_proveedor"]').value =
+            producto.id_proveedor;
+          formProducto.querySelector('[name="descripcion"]').value =
+            producto.descripcion;
+
+          modalProducto.querySelector(".modal-title").textContent =
+            "Editar Producto";
+          const modalInstance =
+            bootstrap.Modal.getOrCreateInstance(modalProducto);
+          modalInstance.show();
         } catch (error) {
-          console.error("Error al eliminar producto:", error.message);
+          console.error("Error al cargar los datos del producto:", error);
         }
       }
-    }
-  });
 
-  getAllCategorias()
-    .then((categorias) => {
-      renderOptions("categoriaProducto", categorias, categoriaOptionTemplate);
-    })
-    .catch((error) => console.error("Error al cargar categorías:", error));
+      const btnEliminar = event.target.closest(".btn-eliminar-producto");
+      if (btnEliminar) {
+        event.stopPropagation();
+        const idProducto = btnEliminar.getAttribute("data-id");
+        if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+          try {
+            const result = await eliminarProducto(idProducto);
+            if (result.success) {
+              console.log("Producto eliminado correctamente.");
+              actualizarListaProductos();
+            } else {
+              console.error("Error al eliminar producto:", result.message);
+            }
+          } catch (error) {
+            console.error("Error al eliminar producto:", error.message);
+          }
+        }
+      }
+    });
+  }
 
-  getTodosLosProveedores()
-    .then((proveedores) => {
-      renderOptions("proveedorProducto", proveedores, proveedorOptionTemplate);
-    })
-    .catch((error) => console.error("Error al cargar proveedores:", error));
-
-  modalAgregarProducto.addEventListener("hidden.bs.modal", () => {
-    formAgregarProducto.reset();
-
-    formAgregarProducto.querySelector('[name="id_producto"]').value = "";
-
-    modalAgregarProducto.querySelector(".modal-title").textContent =
-      "Agregar Producto";
+  modalProducto.addEventListener("hidden.bs.modal", () => {
+    formProducto.reset();
+    modalProducto.querySelector(".modal-title").textContent =
+      "Registrar Producto";
   });
 
   initCalcularPrecioFinal();

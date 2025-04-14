@@ -17,7 +17,6 @@ export function initModalProveedores() {
     return;
   }
 
-  // Listener para abrir el modal en modo 'Registrar Proveedor'
   if (btnRegistrar) {
     btnRegistrar.addEventListener("click", () => {
       formProveedor.reset();

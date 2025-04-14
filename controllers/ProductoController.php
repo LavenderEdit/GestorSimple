@@ -71,6 +71,15 @@ class ProductoController
         $id_cat = trim($_POST['id_categoria']);
         $id_prov = trim($_POST['id_proveedor']);
 
+        if (is_numeric($ganancia)) {
+            $ganancia = floatval($ganancia);
+            if ($ganancia > 1) {
+                $ganancia = $ganancia / 100;
+            }
+        } else {
+            $ganancia = 0;
+        }
+
         $resultado = $this->productosModel->updateProducto(
             $id_prod,
             $nombre,

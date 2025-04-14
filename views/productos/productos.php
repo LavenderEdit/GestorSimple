@@ -3,7 +3,7 @@
         <h3 class="text-white mb-0">
             <i class="fas fa-box-open me-2 text-info"></i> Productos / Servicios
         </h3>
-        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarProducto">
+        <button class="btn btn-sm btn-primary" id="btnRegistrarProducto">
             <i class="fas fa-plus me-1"></i> Registrar Nuevo
         </button>
     </div>

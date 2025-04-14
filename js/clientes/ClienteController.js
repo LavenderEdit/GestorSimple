@@ -60,3 +60,19 @@ export async function getClientePorId(idCliente) {
     throw error;
   }
 }
+
+export async function getAllClientes() {
+  try {
+    const response = await apiRequest(
+      "clientes",
+      "getAllClientes",
+      "GET",
+      null
+    );
+
+    return response;
+  } catch (error) {
+    console.error("Error al traer las categorias:", error);
+    return { success: false, message: error.message };
+  }
+}

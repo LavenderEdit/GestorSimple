@@ -4,7 +4,7 @@
     <h3 class="text-white mb-0">
       <i class="fa-solid fa-id-card-clip me-2 text-info"></i> Clientes
     </h3>
-    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarCliente">
+    <button class="btn btn-sm btn-primary" id="btnRegistrarCliente">
       <i class="fas fa-plus me-1"></i> Registrar Nuevo
     </button>
   </div>
