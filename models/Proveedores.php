@@ -22,7 +22,7 @@ class Proveedores extends BaseModel
 
     public function editarProveedor($id_proveedor, $nombre, $email, $telefono, $direccion)
     {
-        return $this->callProcedure('editar', [$id_proveedor, $nombre, $email, $telefono, $direccion]);
+        return $this->callProcedure('editar', [$id_proveedor, $nombre, $direccion, $telefono, $email]);
     }
 
     public function eliminarProveedor($id_proveedor)

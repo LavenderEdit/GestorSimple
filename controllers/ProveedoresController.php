@@ -18,7 +18,7 @@ class ProveedoresController
     }
 
 
-    
+
 
     public function insertarProveedor()
     {
@@ -105,7 +105,7 @@ class ProveedoresController
                 throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
             }
 
-            $id_proveedor = filter_var(trim($_GET['id']), FILTER_SANITIZE_STRING);
+            $id_proveedor = filter_var(trim($_GET['id']), FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = $this->proveedoresModel->obtenerProveedorPorId($id_proveedor);
 
@@ -135,7 +135,7 @@ class ProveedoresController
                 throw new \InvalidArgumentException("Tipo de búsqueda inválido: $tipo");
             }
 
-            $valor = filter_var(trim($valor), FILTER_SANITIZE_STRING);
+            $valor = filter_var(trim($valor), FILTER_SANITIZE_SPECIAL_CHARS);
             $resultados = [];
 
             if ($tipo === 'todos' || empty($valor)) {
@@ -175,7 +175,7 @@ class ProveedoresController
                 throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
             }
 
-            $id_proveedor = filter_var(trim($_GET['id_prov']), FILTER_SANITIZE_STRING);
+            $id_proveedor = filter_var(trim($_GET['id_prov']), FILTER_SANITIZE_SPECIAL_CHARS);
             return $this->proveedoresModel->buscarProductosPorProveedor($id_proveedor);
         } catch (\Exception $e) {
             error_log("Error en ProveedoresController: " . $e->getMessage());

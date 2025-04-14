@@ -1,7 +1,7 @@
 import { initVentas } from "../ventas/initVentas.js";
 import { initProductos } from "../productos/initProductos.js?v=2";
 import { initClientes } from "../clientes/initClientes.js?v=4";
-import { initProveedores } from "../proveedores/initProveedores.js?v=2";
+import { initProveedores } from "../proveedores/initProveedores.js?v=5";
 import { initCategoria } from "../categoria/initCategoria.js";
 import { initTipoCliente } from "../tipocliente/initTipoCliente.js";
 import { initTipoUsuario } from "../tipousuario/initTipoUsuario.js";
