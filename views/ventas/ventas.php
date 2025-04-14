@@ -46,23 +46,6 @@
                             </p>
                         </div>
                     </div>
-
-                    <!-- Botones organizados en dos columnas -->
-                    <div class="row g-2">
-                        <div class="col-md-6 d-grid">
-                            <button class="btn btn-primary">ENVIAR POR EMAIL</button>
-                        </div>
-                        <div class="col-md-6 d-grid">
-                            <button class="btn btn-primary">VISUALIZAR PDF</button>
-                        </div>
-                        <div class="col-md-6 d-grid">
-                            <button class="btn btn-primary">DESCARGAR PDF</button>
-                        </div>
-                        <div class="col-md-6 d-grid">
-                            <button class="btn btn-primary">IMPRIMIR</button>
-                        </div>
-                    </div>
-
                     <div class="d-grid mt-3">
                         <button class="btn btn-danger">DAR DE BAJA (ANULAR)</button>
                     </div>
