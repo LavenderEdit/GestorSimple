@@ -118,5 +118,37 @@
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <!-- Sección de Valores Empresariales -->
+<div class="mb-5" id="valores">
+    <div class="card border-0 shadow-lg bg-secondary bg-gradient">
+        <div class="card-header bg-dark bg-gradient text-white py-4">
+            <h3 class="mb-0 d-flex align-items-center">
+                <i class="fas fa-heart me-3 text-danger"></i>
+                Nuestros Valores
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="row g-4">
+                <?php 
+                    $valores = ['Integridad', 'Servicio', 'Compromiso', 'Respeto', 'Responsabilidad'];
+                    $iconos = ['fas fa-handshake', 'fas fa-concierge-bell', 'fas fa-hands-helping', 'fas fa-users', 'fas fa-balance-scale'];
+                    $colores = ['text-primary', 'text-success', 'text-warning', 'text-info', 'text-danger'];
+                ?>
+                <?php foreach ($valores as $i => $valor): ?>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="info-card p-4 shadow-sm rounded-3 bg-dark h-100">
+                            <div class="d-flex align-items-center <?= $colores[$i] ?> mb-3">
+                                <i class="<?= $iconos[$i] ?> fa-lg me-3"></i>
+                                <h5 class="mb-0 text-white"><?= $valor ?></h5>
+                            </div>
+                            <p class="text-white-50">Valor fundamental que guía nuestras acciones y decisiones como empresa.</p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
 </div>
