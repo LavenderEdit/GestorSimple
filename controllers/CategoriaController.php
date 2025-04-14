@@ -88,7 +88,7 @@ class CategoriaController
                 throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
             }
 
-            $id_categoria = filter_var(trim($_GET['id']), FILTER_SANITIZE_STRING);
+            $id_categoria = filter_var(trim($_GET['id']), FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = $this->categoriaModel->obtenerCategoriaPorId($id_categoria);
 

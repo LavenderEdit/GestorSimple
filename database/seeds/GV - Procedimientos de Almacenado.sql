@@ -132,6 +132,7 @@ BEGIN
 END $$
 DELIMITER ;
 
+
 -- USUARIOS
 -- Crea un nuevo usuario con datos basicos y elige la imagen de default subida a la default con id: 1
 -- Se puede usar aqui en el gestor para agregar un usuario nuevo
@@ -162,6 +163,7 @@ BEGIN
         ID_TIPOUSUARIO,
         1
     );
+    SELECT LAST_INSERT_ID() AS id_usuario;
 END $$
 DELIMITER ;
 
@@ -182,6 +184,71 @@ BEGIN
     SELECT * FROM USUARIOS WHERE id_usuario = p_id;
 END $$
 DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE sp_editar_usuario(
+    IN p_id_usuario INT,
+    IN p_nombre VARCHAR(60),
+    IN p_correo VARCHAR(80),
+    IN p_contrasenia VARCHAR(255),
+    IN p_tipo_id_usuario INT
+)
+BEGIN
+    UPDATE USUARIOS
+    SET
+        nombre = p_nombre,
+        correo = p_correo,
+        contrasenia = p_contrasenia,
+        tipo_id_usuario = p_tipo_id_usuario,
+        avatar_id_usuario = 1
+    WHERE id_usuario = p_id_usuario;
+
+    SELECT ROW_COUNT() AS filas_afectadas;
+END $$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE sp_eliminar_total_usuario(
+    IN p_id_usuario INT
+)
+BEGIN
+    DECLARE existe_usuario INT;
+
+    SELECT COUNT(*) INTO existe_usuario
+    FROM USUARIOS
+    WHERE id_usuario = p_id_usuario;
+
+    IF existe_usuario = 0 THEN
+        SELECT 'ERROR: Usuario no existe.' AS mensaje;
+    ELSE
+        DELETE FROM USUARIOS WHERE id_usuario = p_id_usuario;
+        SELECT 'Usuario eliminado correctamente.' AS mensaje;
+    END IF;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE sp_listar_completo_usuario;
+
+DELIMITER $$
+CREATE PROCEDURE sp_listar_completo_usuario()
+BEGIN
+    SELECT 
+        u.id_usuario,
+        u.nombre,
+        u.correo,
+        tu.id_tipo_usuario AS id_tipo_usuario,
+        tu.nombre_tipo AS tipo_usuario
+    FROM 
+        USUARIOS u
+    INNER JOIN 
+        TIPOUSUARIO tu ON u.tipo_id_usuario = tu.id_tipo_usuario
+	ORDER BY u.id_usuario ASC;
+END $$
+DELIMITER ;
+
+
 
 -- Buscar a un usuario por correo para autenticarlos
 DELIMITER $$

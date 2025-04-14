@@ -3,50 +3,124 @@ namespace Controllers;
 
 require_once __DIR__ . "/../database/database.php";
 require_once __DIR__ . "/../models/Usuario.php";
+
+use Database\Database;
 use Models\Usuario;
-use Core\Controller;
 
-class UsuarioController extends Controller
+class UsuarioController
 {
-    //Métodos para el crud API - REST
-    public function index()
+
+    private Usuario $usuarioModel;
+    public function __construct()
     {
-        $usuarioModel = new Usuario();
-        $usuarios = $usuarioModel->obtenerUsuarios();
-        $this->loadView("usuarios/index", ["usuarios" => $usuarios]);
+        $pdo = Database::getConnection();
+        $this->usuarioModel = new Usuario($pdo);
     }
 
-    public function create()
+    public function updateUsuario()
     {
-        $this->loadView("usuarios/crear");
-    }
+        $id_user = trim($_POST['id_usuario']);
+        $nombre = trim($_POST['nombre'] ?? '');
+        $correo = trim($_POST['correo'] ?? '');
+        $contrasenia = trim($_POST['contrasenia'] ?? '');
+        $id_tipo_usuario = trim($_POST['id_tipo_usuario'] ?? '');
 
-    public function store()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = $_POST['nombre'] ?? '';
-            $correo = $_POST['correo'] ?? '';
-            $contrasenia = $_POST['contrasenia'] ?? '';
-            $tipoUsuario = $_POST['tipo_id_usuario'] ?? 1;
+        $resultado = $this->usuarioModel->editarUsuario
+        (
+            $id_user,
+            $nombre,
+            $correo,
+            $contrasenia,
+            $id_tipo_usuario
+        );
 
-            $usuarioModel = new Usuario();
-            $resultado = $usuarioModel->crearUsuario($nombre, $correo, $contrasenia, $tipoUsuario);
-
-            header("Location: /usuarios");
-            exit;
+        header('Content-Type: application/json');
+        if ($resultado) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Edición exitosa.'
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al actualizar la categoria.'
+            ]);
         }
     }
 
-    public function show($id)
+    public function deleteUsuario()
     {
-        $usuarioModel = new Usuario();
-        $usuario = $usuarioModel->obtenerUsuarioPorId($id);
+        $id = $_GET['id'] ?? '';
 
-        if ($usuario) {
-            $this->loadView("usuarios/ver", ["usuario" => $usuario]);
-        } else {
-            header("Location: /usuarios?error=Usuario no encontrado");
-            exit;
+        $resultado = $this->usuarioModel->eliminarUsuario($id);
+
+        echo json_encode([
+            'success' => $resultado,
+            'message' => $resultado ? 'Usuario eliminado' : 'No se pudo eliminar',
+        ]);
+    }
+
+    public function getCompleteUserById()
+    {
+        try {
+            if (!isset($_GET['id'])) {
+                throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
+            }
+
+            $id_usuario = filter_var(trim($_GET['id']), FILTER_SANITIZE_SPECIAL_CHARS);
+
+            $data = $this->usuarioModel->obtenerUsuarioCompletoPorId($id_usuario);
+
+            header('Content-Type: application/json');
+
+            echo json_encode($data);
+        } catch (\Exception $e) {
+            error_log("Error en: UsuarioController" . $e->getMessage());
+            return [
+                'error' => true,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function getUsuarios()
+    {
+        $data = $this->usuarioModel->obtenerUsuarios();
+
+        header('Content-Type: application/json');
+
+        echo json_encode($data);
+    }
+
+    public function getUsuariosCompleto()
+    {
+        $data = $this->usuarioModel->obtenerUsuarioCompleto();
+
+        header('Content-Type: application/json');
+
+        echo json_encode($data);
+    }
+
+    public function getUsuarioById()
+    {
+        try {
+            if (!isset($_GET['id'])) {
+                throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
+            }
+
+            $id_usuario = filter_var(trim($_GET['id']), FILTER_SANITIZE_SPECIAL_CHARS);
+
+            $data = $this->usuarioModel->obtenerUsuarioPorId($id_usuario);
+
+            header('Content-Type: application/json');
+
+            echo json_encode($data);
+        } catch (\Exception $e) {
+            error_log("Error en: UsuarioController" . $e->getMessage());
+            return [
+                'error' => true,
+                'message' => $e->getMessage()
+            ];
         }
     }
 }

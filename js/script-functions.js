@@ -1,12 +1,18 @@
 export function togglePasswordVisibility() {
-  const togglePasswordButton = document.querySelector(".toggle-password");
-  const passwordField = togglePasswordButton.previousElementSibling;
+  const toggleButtons = document.querySelectorAll(".toggle-password");
 
-  togglePasswordButton.addEventListener("click", function () {
-    const type = passwordField.type === "password" ? "text" : "password";
-    passwordField.type = type;
+  toggleButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const input = this.parentElement.querySelector(
+        "input[type='password'], input[type='text']"
+      );
+      if (!input) return;
 
-    const icon = type === "password" ? "fa-eye" : "fa-eye-slash";
-    togglePasswordButton.innerHTML = `<i class="fas ${icon}"></i>`;
+      const newType = input.type === "password" ? "text" : "password";
+      input.type = newType;
+
+      const iconClass = newType === "password" ? "fa-eye" : "fa-eye-slash";
+      this.innerHTML = `<i class="fas ${iconClass}"></i>`;
+    });
   });
 }

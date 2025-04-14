@@ -32,16 +32,35 @@ class Usuario extends BaseModel
         return false;
     }
 
-
     // Métodos para procedimientos de almacenamientos
     public function crearUsuario($nombre, $correo, $contrasenia, $tipoUsuario)
     {
         return $this->callProcedure('crear', [$nombre, $correo, $contrasenia, $tipoUsuario]);
     }
 
+    public function editarUsuario($id_usuario, $nombre, $correo, $contrasenia, $tipoUsuario)
+    {
+        return $this->callProcedure('editar', [$id_usuario, $nombre, $correo, $contrasenia, $tipoUsuario]);
+    }
+
+    public function eliminarUsuario($id_usuario)
+    {
+        return $this->callProcedure('eliminar_total', [$id_usuario]);
+    }
+
     public function obtenerUsuarios()
     {
         return $this->callProcedure('visualizar', []);
+    }
+
+    public function obtenerUsuarioCompleto()
+    {
+        return $this->callProcedure('listar_completo', []);
+    }
+
+    public function obtenerUsuarioCompletoPorId($id)
+    {
+        return $this->callProcedure('obtener_completo_por_id', [$id]);
     }
 
     public function obtenerUsuarioPorId($id)

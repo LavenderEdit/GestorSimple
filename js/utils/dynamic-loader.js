@@ -7,6 +7,7 @@ import { initTipoCliente } from "../tipocliente/initTipoCliente.js";
 import { initTipoUsuario } from "../tipousuario/initTipoUsuario.js";
 import { initMetodoPago } from "../metodopago/initMetodoPago.js";
 import { initPagos } from "../pagos/initPagos.js";
+import { initUsuario } from "../usuario/initUsuario.js";
 
 const pageCallbacks = {
   ventas: () => {
@@ -35,6 +36,9 @@ const pageCallbacks = {
   },
   pagos: () => {
     initPagos();
+  },
+  usuario: () => {
+    initUsuario();
   },
 };
 
@@ -71,6 +75,9 @@ export function loadPageContent(page) {
       break;
     case "metodos_pago":
       file = "views/metodopago/metodopago.php";
+      break;
+    case "usuario":
+      file = "views/usuarios/usuarios.php";
       break;
     default:
       file = "views/error/404.php";

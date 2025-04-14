@@ -65,6 +65,11 @@
                     <i class="fa-solid fa-comment-dollar me-2"></i> Métodos de Pago
                 </a>
             </li>
+            <li class="nav-item mb-2">
+                <a href="#" class="nav-link text-white" data-page="usuario">
+                    <i class="fa-solid fa-user-gear me-2"></i> Usuario
+                </a>
+            </li>
         <?php endif; ?>
     </ul>
 </div>

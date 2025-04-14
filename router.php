@@ -50,6 +50,10 @@ switch (strtolower($controllerName)) {
         require_once 'controllers/VentaController.php';
         $controller = new \Controllers\VentaController();
         break;
+    case 'usuario':
+        require_once 'controllers/UsuarioController.php';
+        $controller = new \Controllers\UsuarioController();
+        break;
     default:
         header('Content-Type: application/json');
         echo json_encode(['error' => 'Controlador no válido.']);

@@ -87,7 +87,7 @@ class TipoUsuarioController
                 throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
             }
 
-            $id_tip_user = filter_var(trim($_GET['id']), FILTER_SANITIZE_STRING);
+            $id_tip_user = filter_var(trim($_GET['id']), FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = $this->tipoUsuarioModel->obtenerTipoUsuarioPorId($id_tip_user);
 

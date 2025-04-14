@@ -87,7 +87,7 @@ class MetodoPagoController
                 throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
             }
 
-            $id_met_pago = filter_var(trim($_GET['id']), FILTER_SANITIZE_STRING);
+            $id_met_pago = filter_var(trim($_GET['id']), FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = $this->metodo_pagoModel->obtenerMetodo_PagoPorId($id_met_pago);
 

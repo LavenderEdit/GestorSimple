@@ -87,7 +87,7 @@ class TipoClienteController
                 throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
             }
 
-            $id_tip_cli = filter_var(trim($_GET['id']), FILTER_SANITIZE_STRING);
+            $id_tip_cli = filter_var(trim($_GET['id']), FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = $this->tipoClienteModel->obtenerTipoClientePorId($id_tip_cli);
 

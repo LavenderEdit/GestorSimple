@@ -124,7 +124,7 @@ class ProductoController
                 throw new \InvalidArgumentException("Parámetros de búsqueda requeridos");
             }
 
-            $id_producto = filter_var(trim($_GET['id']), FILTER_SANITIZE_STRING);
+            $id_producto = filter_var(trim($_GET['id']), FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = $this->productosModel->obtenerProductoPorId($id_producto);
 
