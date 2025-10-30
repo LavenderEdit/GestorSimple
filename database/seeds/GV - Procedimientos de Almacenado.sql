@@ -229,8 +229,6 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE sp_listar_completo_usuario;
-
 DELIMITER $$
 CREATE PROCEDURE sp_listar_completo_usuario()
 BEGIN
@@ -342,8 +340,6 @@ BEGIN
     SELECT * FROM TIPOCLIENTE WHERE id_tipo_cliente = p_id;
 END $$
 DELIMITER ;
-
-
 
 -- CLIENTES
 -- Crea un nuevo cliente
@@ -942,7 +938,6 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE sp_info_ventas;
 -- Visualizar la info de una venta
 DELIMITER $$
 CREATE PROCEDURE sp_info_ventas(IN p_id_venta INT)
@@ -961,8 +956,6 @@ BEGIN
     WHERE v.id_venta = p_id_venta;
 END$$
 DELIMITER ;
-
-
 
 -- DETALLE_VENTAS
 -- Crea una nueva detalle_ventas junto con sus conexiones a venta y producto
