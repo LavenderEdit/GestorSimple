@@ -1,25 +1,28 @@
 export function renderCategoriaTemplate(categoria) {
   return `
     <li 
-      class="list-group-item list-group-item-action bg-dark border-secondary text-light d-flex justify-content-between align-items-center p-3"
+      class="list-group-item list-group-item-action bg-warning-subtle border-warning-subtle text-dark d-flex justify-content-between align-items-center p-3"
       data-id="${categoria.id_categoria}"
     >
       <div>
-        <div class="fw-bold text-info">${categoria.nombre}</div>
-        <small class="text-white">${
+        <!-- CAMBIO: Título a 'text-warning-emphasis' -->
+        <div class="fw-bold text-warning-emphasis">${categoria.nombre}</div>
+        <!-- CAMBIO: Descripción a 'text-muted' -->
+        <small class="text-muted">${
           categoria.descripcion || "Sin descripción"
         }</small>
       </div>
 
-      <div class="d-flex">
-          <button class="btn btn-sm btn-editar-categoria me-2" data-id="${
+      <!-- CAMBIO: Botones a clases de Bootstrap (outline-warning y outline-danger) y 'gap-2' -->
+      <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-warning btn-editar-categoria" data-id="${
             categoria.id_categoria
-          }" style="background-color: #00A36C; color: white; border: none;">
+          }">
             <i class="fa-solid fa-pencil"></i> Editar
           </button>
-          <button class="btn btn-sm btn-eliminar-categoria" data-id="${
+          <button class="btn btn-sm btn-outline-danger btn-eliminar-categoria" data-id="${
             categoria.id_categoria
-          }" style="background-color: #FF073A; color: white; border: none;">
+          }">
             <i class="fa-solid fa-trash"></i> Eliminar
           </button>
         </div>

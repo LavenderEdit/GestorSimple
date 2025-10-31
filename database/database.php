@@ -15,7 +15,7 @@ class Database
                 $config = include __DIR__ . '/../database/config.php';
 
                 self::$conn = new PDO(
-                    "mysql:host={$config['db_host']};dbname={$config['db_name']}",
+                    "mysql:host={$config['db_host']};dbname={$config['db_name']};port={$config['db_port']};charset=utf8mb4",
                     $config['db_user'],
                     $config['db_pass'],
                     [

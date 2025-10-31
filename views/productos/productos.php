@@ -1,21 +1,26 @@
 <div class="p-3">
+    <!-- CAMBIO: Título a 'text-dark', Botón a 'btn-warning' -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3 class="text-white mb-0">
-            <i class="fas fa-box-open me-2 text-info"></i> Productos / Servicios
+        <h3 class="text-dark mb-0">
+            <!-- CAMBIO: Icono a 'text-warning' -->
+            <i class="fas fa-box-open me-2 text-warning"></i> Productos / Servicios
         </h3>
-        <button class="btn btn-sm btn-primary" id="btnRegistrarProducto">
+        <!-- CAMBIO: Botón a 'btn-warning' -->
+        <button class="btn btn-sm btn-warning text-dark fw-bold" id="btnRegistrarProducto">
             <i class="fas fa-plus me-1"></i> Registrar Nuevo
         </button>
     </div>
 
     <!-- Modal para Agregar Producto -->
+    <!-- CAMBIO: Modal a tema claro (bg-white, text-dark) -->
     <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content" style="background-color: rgba(33, 37, 41, 1) !important; color: white;">
+            <div class="modal-content text-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalAgregarProductoLabel">Agregar Producto</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    <!-- CAMBIO: Quitado 'btn-close-white' -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Cerrar"></button>
                 </div>
                 <form id="formAgregarProducto">
@@ -27,6 +32,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+                                <!-- CAMBIO: Inputs a estilo claro (default) -->
                                 <input type="text" class="form-control" id="nombreProducto" name="nombre" required>
                             </div>
                             <div class="col-md-6">
@@ -72,7 +78,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <!-- CAMBIO: Botón principal a 'btn-warning' -->
+                        <button type="submit" class="btn btn-warning text-dark fw-bold">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -83,23 +90,27 @@
         <div class="row g-2 align-items-end">
             <!-- Filtro por nombre -->
             <div class="col-md-6">
-                <label for="filtro-nombre" class="form-label text-white">Nombre del Producto</label>
-                <input type="text" id="filtro-nombre" name="filtro-nombre"
-                    class="form-control bg-dark text-white border-secondary" placeholder="Buscar...">
+                <!-- CAMBIO: Label a 'text-dark' -->
+                <label for="filtro-nombre" class="form-label text-dark">Nombre del Producto</label>
+                <!-- CAMBIO: Inputs a estilo claro (default) -->
+                <input type="text" id="filtro-nombre" name="filtro-nombre" class="form-control"
+                    placeholder="Buscar...">
             </div>
             <!-- Filtro por categoría -->
             <div class="col-md-3">
-                <label for="filtro-categoria" class="form-label text-white">Categoría</label>
-                <select id="filtro-categoria" name="filtro-categoria"
-                    class="form-select bg-dark text-white border-secondary">
+                <!-- CAMBIO: Label a 'text-dark' -->
+                <label for="filtro-categoria" class="form-label text-dark">Categoría</label>
+                <!-- CAMBIO: Inputs a estilo claro (default) -->
+                <select id="filtro-categoria" name="filtro-categoria" class="form-select">
                     <!-- Opciones se cargarán dinámicamente -->
                 </select>
             </div>
             <!-- Filtro por proveedor -->
             <div class="col-md-3">
-                <label for="filtro-proveedor" class="form-label text-white">Proveedor</label>
-                <select id="filtro-proveedor" name="filtro-proveedor"
-                    class="form-select bg-dark text-white border-secondary">
+                <!-- CAMBIO: Label a 'text-dark' -->
+                <label for="filtro-proveedor" class="form-label text-dark">Proveedor</label>
+                <!-- CAMBIO: Inputs a estilo claro (default) -->
+                <select id="filtro-proveedor" name="filtro-proveedor" class="form-select">
                     <!-- Opciones se cargarán dinámicamente -->
                 </select>
             </div>
@@ -109,6 +120,7 @@
     <!-- Contenedor para la lista de productos -->
     <ul class="list-group" id="productoList">
         <!-- Los productos se renderizarán dinámicamente aquí -->
+        <!-- JS 'renderTemplateProductos.js' generará items 'bg-warning-subtle' -->
     </ul>
 
 </div>

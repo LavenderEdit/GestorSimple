@@ -1,7 +1,9 @@
 <div class="container mt-4">
-  <h4 class="text-white">Listado de Pagos</h4>
+  <!-- CAMBIO: Título a 'text-dark' -->
+  <h4 class="text-dark">Listado de Pagos</h4>
 
   <!-- Filtro de búsqueda interactiva -->
+  <!-- CAMBIO: Inputs a estilo claro (default) -->
   <div class="row mb-3">
     <div class="col-md-4">
       <input type="text" class="form-control" id="searchInput" name="searchInput" placeholder="Buscar pago...">
@@ -23,63 +25,72 @@
 
     $controller = new PagoController();
     $pagos = $controller->obtenerListaPagos();
-    
+
     if (empty($pagos)) {
-        echo '<li class="list-group-item bg-dark text-white">No se encontraron pagos.</li>';
+      // CAMBIO: Empty state a 'bg-warning-subtle'
+      echo '<li class="list-group-item bg-warning-subtle text-muted">No se encontraron pagos.</li>';
     } else {
-        foreach ($pagos as $pago): 
-            $fecha = ($pago['fecha_pago']);
-            $badgeClass = $pago['estado_pago'] === 'COMPLETO' ? 'bg-success' : 'bg-danger';
+      foreach ($pagos as $pago):
+        $fecha = ($pago['fecha_pago']);
+        $badgeClass = $pago['estado_pago'] === 'COMPLETO' ? 'bg-success' : 'bg-danger';
         ?>
-            <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">
-                        Pago #<?= htmlspecialchars($pago['id_pago']) ?>    
-                    </div>
-                    <small class="d-block">
-                        <strong>Cliente:</strong> <?= htmlspecialchars($pago['cliente']) ?> |
-                        <strong>Pago Utilizado:</strong> <?= htmlspecialchars($pago['referencia_pago']) ?>
-                    </small>
-                    <small class="d-block mt-1">
-                        <strong>Fecha:</strong> <?= $fecha ?> |
-                        <strong>Monto:</strong> S/<?= number_format($pago['monto'], 2) ?> |
-                        <strong>Total Venta:</strong> S/<?= number_format($pago['total_venta'], 2) ?>
-                    </small>
-                </div>
-                <div>
-                    <span class="badge <?= $badgeClass ?> ms-2">
-                        <?= htmlspecialchars($pago['estado_pago']) ?>
-                    </span>
-                    <button class="btn btn-sm btn-info ms-2 ver-detalle" 
-                            data-pago-id="<?= $pago['id_pago'] ?>"
-                            title="Ver detalles">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-            </li>
-        <?php endforeach;
+        <!-- CAMBIO: Lista a 'bg-warning-subtle' y botones a 'outline' -->
+        <li class="list-group-item bg-warning-subtle border-warning-subtle text-dark d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <!-- CAMBIO: Título a 'text-warning-emphasis' -->
+            <div class="fw-bold text-warning-emphasis">
+              Pago #<?= htmlspecialchars($pago['id_pago']) ?>
+            </div>
+            <!-- CAMBIO: Texto a 'text-muted' -->
+            <small class="d-block text-muted">
+              <strong>Cliente:</strong> <?= htmlspecialchars($pago['cliente']) ?> |
+              <strong>Pago Utilizado:</strong> <?= htmlspecialchars($pago['referencia_pago']) ?>
+            </small>
+            <!-- CAMBIO: Texto a 'text-muted' -->
+            <small class="d-block mt-1 text-muted">
+              <strong>Fecha:</strong> <?= $fecha ?> |
+              <strong>Monto:</strong> S/<?= number_format($pago['monto'], 2) ?> |
+              <strong>Total Venta:</strong> S/<?= number_format($pago['total_venta'], 2) ?>
+            </small>
+          </div>
+          <div>
+            <span class="badge <?= $badgeClass ?> ms-2">
+              <?= htmlspecialchars($pago['estado_pago']) ?>
+            </span>
+            <!-- CAMBIO: Botón 'btn-info' a 'btn-outline-warning' -->
+            <button class="btn btn-sm btn-outline-warning ms-2 ver-detalle" data-pago-id="<?= $pago['id_pago'] ?>"
+              title="Ver detalles">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </li>
+      <?php endforeach;
     }
     ?>
   </ul>
 
   <!-- Modal para detalles del pago -->
+  <!-- CAMBIO: Modal a tema claro (bg-white, text-dark) -->
   <div class="modal fade" id="detallePagoModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-dark text-white">
-      <div class="modal-header">
-        <h5 class="modal-title">Detalles Completos del Pago</h5>
-        <button type="button" class="btn-close btn-close-red" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title">Detalles Completos del Pago</h5>
+          <!-- CAMBIO: Quitado 'btn-close-red' -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
         <div class="modal-body" id="modalPagoContent">
           <div class="text-center">
-            <div class="spinner-border text-primary" role="status">
+            <!-- CAMBIO: Spinner 'text-primary' a 'text-warning' -->
+            <div class="spinner-border text-warning" role="status">
               <span class="visually-hidden">Cargando...</span>
             </div>
             <p>Cargando detalles del pago...</p>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <!-- CAMBIO: 'btn-danger' a 'btn-secondary' -->
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>

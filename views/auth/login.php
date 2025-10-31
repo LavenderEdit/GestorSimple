@@ -9,72 +9,73 @@ unset($_SESSION['error_login']);
 
 <div class="container-fluid g-0" style="min-height: 100vh;">
     <div class="row g-0 h-100">
+        <!-- Columna izquierda: Bienvenida -->
         <div class="col-lg-6 d-none d-lg-block">
             <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="
-             background: linear-gradient(135deg, #292E49 0%, #536976 100%);
-             background-size: cover; 
-             position: relative;
-           ">
-
-                <div class="position-absolute top-50 start-50 translate-middle" style="
-               width: 500px; 
-               height: 300px; 
-               background: radial-gradient(closest-corner at 50% 50%, #682DEE 0%, transparent 80%);
-               filter: blur(80px);
-               opacity: 0.6;
-             ">
-                </div>
-
+                 background: linear-gradient(135deg, #F7971E 0%, #E94057 100%); /* Gradiente cálido: Naranja a Rojo/Rosa */
+                 background-size: cover; 
+                 position: relative;
+               ">
+                
                 <div class="position-relative text-center text-white">
+                    <!-- Texto blanco sobre fondo de gradiente -->
                     <h1 class="display-5 fw-bold">¡Bienvenido!</h1>
-                    <p class="lead">Ingresa tus datos</p>
+                    <p class="lead">Ingresa tus datos para continuar</p>
                 </div>
             </div>
         </div>
 
         <!-- Columna derecha: formulario de login -->
-        <div class="col-lg-6 d-flex align-items-center justify-content-center bg-dark text-white"
+        <div class="col-lg-6 d-flex align-items-center justify-content-center bg-light text-dark"
             style="min-height: 100vh;">
-            <div class="card bg-transparent border-light shadow-lg p-4" style="max-width: 400px; border-radius: 20px;">
+            <!-- Fondo gris claro (bg-light) y texto oscuro (text-dark) -->
+            <div class="card bg-white border-0 shadow-lg p-4" style="max-width: 400px; border-radius: 20px;">
+                <!-- Tarjeta blanca (bg-white) sin borde y con sombra -->
                 <div class="card-body">
-                    <h2 class="text-center mb-4 text-white">Inicia Sesión</h2>
+                    <h2 class="text-center mb-4 text-dark">Inicia Sesión</h2> <!-- Texto oscuro -->
 
                     <!-- Formulario -->
                     <form method="POST" action="/GestorSimple/router.php?action=login">
                         <div class="mb-3">
-                            <label for="correo" class="form-label text-white">Correo Electrónico</label>
-                            <input type="email" class="form-control bg-dark text-white border-light" id="correo"
+                            <label for="correo" class="form-label text-dark">Correo Electrónico</label>
+                            <!-- Input con estilo por defecto (fondo blanco, borde claro) -->
+                            <input type="email" class="form-control" id="correo"
                                 name="correo" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="contrasenia" class="form-label text-white">Contraseña</label>
+                            <label for="contrasenia" class="form-label text-dark">Contraseña</label>
                             <div class="input-group">
-                                <input type="password" class="form-control bg-dark text-white border-light"
+                                <!-- Input con estilo por defecto -->
+                                <input type="password" class="form-control"
                                     id="contrasenia" name="contrasenia" required>
-                                <button type="button" class="btn btn-outline-light toggle-password">
-                                    <i class="fas fa-eye"></i> <!-- Icono de mostrar contraseña -->
+                                <!-- Botón de ojo en color secundario (gris) -->
+                                <button type="button" class="btn btn-outline-secondary toggle-password">
+                                    <i class="fas fa-eye"></i>
                                 </button>
                             </div>
                         </div>
 
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input bg-dark border-light text-white"
+                            <!-- Checkbox con estilo por defecto -->
+                            <input type="checkbox" class="form-check-input"
                                 id="recordarme" name="recordarme">
-                            <label class="form-check-label text-white" for="recordarme">
+                            <label class="form-check-label text-dark" for="recordarme">
                                 Recordarme
                             </label>
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-outline-light">
+                            <!-- Botón principal en color cálido (Naranja - btn-warning) -->
+                            <button type="submit" class="btn btn-warning text-dark fw-bold">
                                 Iniciar Sesión
                             </button>
                         </div>
 
                         <div class="text-center mt-3">
                             <span class="text-muted">¿No tienes cuenta?</span>
-                            <a href="./views/auth/register.php" class="text-primary text-decoration-none">Regístrate
+                            <!-- Enlace en color cálido (Naranja - text-warning) -->
+                            <a href="./views/auth/register.php" class="text-warning text-decoration-none fw-bold">Regístrate
                                 aquí</a>
                         </div>
                     </form>

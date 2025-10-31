@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MP-PHP</title>
+    <title>DG</title>
     <meta name="description"
-        content="MP-PHP es una aplicación de gestión de ventas diseñada para optimizar el control de productos, clientes, proveedores y transacciones. Administra inventarios, genera facturas y reportes, y mejora la eficiencia de tu negocio con esta solución en PHP.">
+        content="DG es una aplicación de gestión de ventas diseñada para optimizar el control de productos, clientes, proveedores y transacciones. Administra inventarios, genera facturas y reportes, y mejora la eficiencia de tu negocio con esta solución en PHP.">
     <base href="/GestorSimple/">
-    <link rel="stylesheet" href="css/main-style.css?v=6">
+    <link rel="stylesheet" href="css/main-style.css?v=7">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <link rel="icon" href="images/logos/MP-PHP-Logo-Circle.webp" type="image/x-icon">
+    <link rel="icon" href="images/logos/logo-app.webp" type="image/x-icon">
 </head>
 
 <body>

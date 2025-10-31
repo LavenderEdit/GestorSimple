@@ -1,21 +1,26 @@
 <div class="p-3">
 
+    <!-- CAMBIO: Título a 'text-dark', Botón a 'btn-warning' -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3 class="text-white mb-0">
-            <i class="fa-solid fa-id-card-clip me-2 text-info"></i> Proveedores
+        <h3 class="text-dark mb-0">
+            <!-- CAMBIO: Icono a 'text-warning' -->
+            <i class="fa-solid fa-id-card-clip me-2 text-warning"></i> Proveedores
         </h3>
-        <button class="btn btn-sm btn-primary" id="btnRegistrarProveedor">
+        <!-- CAMBIO: Botón a 'btn-warning' -->
+        <button class="btn btn-sm btn-warning text-dark fw-bold" id="btnRegistrarProveedor">
             <i class="fas fa-plus me-1"></i> Registrar Nuevo
         </button>
     </div>
 
     <!-- Modal Bootstrap 5 -->
+    <!-- CAMBIO: Modal a tema claro (bg-white, text-dark) -->
     <div class="modal fade" id="modalAgregarProveedor" tabindex="-1" aria-labelledby="modalLabelProveedor">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content" style="background-color: rgba(33, 37, 41, 1) !important; color: white;">
+            <div class="modal-content text-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLabelProveedor">Proveedor</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    <!-- CAMBIO: Quitado 'btn-close-white' -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Cerrar"></button>
                 </div>
 
@@ -27,6 +32,7 @@
                                     <input type="hidden" name="id_proveedor">
 
                                     <label for="nombre" class="form-label">Nombre o razón social</label>
+                                    <!-- CAMBIO: Inputs a estilo claro (default) -->
                                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                                 </div>
 
@@ -50,7 +56,8 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <!-- CAMBIO: Botón principal a 'btn-warning' -->
+                                <button type="submit" class="btn btn-warning text-dark fw-bold">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -61,9 +68,11 @@
 
     <!-- Contenedor principal -->
     <div class="container mt-4">
-        <h4 class="text-white">Listado de Proveedores</h4>
+        <!-- CAMBIO: Título a 'text-dark' -->
+        <h4 class="text-dark">Listado de Proveedores</h4>
 
         <!-- Filtro de búsqueda -->
+        <!-- CAMBIO: Inputs a estilo claro (default) -->
         <div class="row mb-3">
             <div class="col-md-4">
                 <input type="text" class="form-control" id="searchInputProveedor" placeholder="Buscar proveedor...">
@@ -79,6 +88,7 @@
 
         <!-- Lista dinámica de proveedores -->
         <ul class="list-group" id="proveedorList">
+            <!-- JS 'renderTemplateProveedores.js' generará items 'bg-warning-subtle' -->
         </ul>
     </div>
 </div>

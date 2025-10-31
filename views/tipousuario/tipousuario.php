@@ -1,18 +1,22 @@
 <div class="container mt-4">
+    <!-- CAMBIO: Título a 'text-dark', Botón a 'btn-warning' -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="text-white mb-0"><i class="fas fa-user me-2"></i> Tipos de Usuario</h4>
-        <button class="btn btn-success" id="btnRegistrarTipoUsuario">
+        <h4 class="text-dark mb-0"><i class="fas fa-user me-2 text-warning"></i> Tipos de Usuario</h4>
+        <!-- CAMBIO: Botón a 'btn-warning' -->
+        <button class="btn btn-warning text-dark fw-bold" id="btnRegistrarTipoUsuario">
             <i class="fas fa-plus me-1"></i> Registrar Nuevo
         </button>
     </div>
 
+    <!-- CAMBIO: Modal a tema claro (bg-white, text-dark) -->
     <div class="modal fade" id="modalTipoUsuario" tabindex="-1" aria-labelledby="modalTipoUsuarioLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="background-color: rgba(33, 37, 41, 1) !important; color: white;">
+            <div class="modal-content text-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTipoUsuarioLabel">Registrar Tipo de Usuario</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    <!-- CAMBIO: Quitado 'btn-close-white' -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Cerrar"></button>
                 </div>
                 <form id="formTipoUsuario">
@@ -20,23 +24,26 @@
                         <input type="hidden" name="id_tipo_usuario">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre del Tipo</label>
+                            <!-- CAMBIO: Inputs a estilo claro (default) -->
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripción</label>
+                            <!-- CAMBIO: Inputs a estilo claro (default) -->
                             <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <!-- CAMBIO: Botón principal a 'btn-warning' -->
+                        <button type="submit" class="btn btn-warning text-dark fw-bold">Guardar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-
+    <!-- CAMBIO: Inputs a estilo claro (default) -->
     <div class="row mb-3">
         <div class="col-md-6">
             <div class="input-group">
@@ -51,5 +58,6 @@
 
     <ul class="list-group" id="lista-tipousuario">
         <!-- Aquí se renderizan los tipos de usuario dinámicamente -->
+        <!-- JS 'renderTemplateTipoUsuario.js' generará items 'bg-warning-subtle' -->
     </ul>
 </div>

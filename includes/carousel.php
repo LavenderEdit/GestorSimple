@@ -19,14 +19,14 @@
             <!-- Ítem 1 -->
             <div class="carousel-item active" data-bs-interval="2000">
                 <div class="ratio ratio-16x9">
-                    <img src="images/img/Análisis Financiero.jpg" class="d-block w-100 object-fit-cover"
+                    <img src="images/img/Analsís financiero.webp" class="d-block w-100 object-fit-cover"
                         alt="Gestión de Ventas">
                 </div>
                 <div class="carousel-caption d-none d-md-block">
                     <div class="bg-dark bg-opacity-50 rounded p-3">
                         <div class="caption-content text-center">
                             <h5 class="typewriter-title">Sistema Integral de Ventas</h5>
-                            <p class="typewriter-text">Control completo de tu negocio en una sola plataforma</p>
+                            <p class="typewriter-text">Control completo de tu negocio</p>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
             <!-- Ítem 2 -->
             <div class="carousel-item" data-bs-interval="5000">
                 <div class="ratio ratio-16x9">
-                    <img src="images/img/Gestión de Inventario.png" class="d-block w-100 object-fit-cover"
+                    <img src="images/img/gestion de inventarios.jpeg" class="d-block w-100 object-fit-cover"
                         alt="Control de Inventario">
                 </div>
                 <div class="carousel-caption d-none d-md-block">
@@ -107,29 +107,30 @@
     </div>
 
     <!-- Sección de funcionalidades -->
-    <section class="seccion-funcionalidades bg-dark py-5">
+    <!-- CAMBIO: Fondo a 'bg-light', texto a 'text-dark', tarjetas a 'bg-white', iconos a 'text-warning' -->
+    <section class="seccion-funcionalidades bg-light py-5">
         <div class="container">
-            <h2 class="text-center mb-5 text-white">Funcionalidades Principales</h2>
+            <h2 class="text-center mb-5 text-dark">Funcionalidades Principales</h2>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="tarjeta-funcionalidad h-100 p-4 text-center rounded shadow-sm bg-secondary bg-gradient">
-                        <i class="fas fa-cash-register fa-3x text-primary mb-3"></i>
-                        <h4 class="card-title text-white">Gestión de Ventas</h4>
-                        <p class="card-text text-white">Registro y seguimiento de todas tus transacciones comerciales.</p>
+                    <div class="tarjeta-funcionalidad h-100 p-4 text-center rounded shadow-sm bg-white">
+                        <i class="fas fa-cash-register fa-3x text-warning mb-3"></i>
+                        <h4 class="card-title text-dark">Gestión de Ventas</h4>
+                        <p class="card-text text-muted">Registro y seguimiento de todas tus transacciones.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="tarjeta-funcionalidad h-100 p-4 text-center rounded shadow-sm bg-secondary bg-gradient">
-                        <i class="fas fa-boxes fa-3x text-primary mb-3"></i>
-                        <h4 class="card-title text-white">Control de Inventario</h4>
-                        <p class="card-text text-white">Administración detallada de productos y existencias.</p>
+                    <div class="tarjeta-funcionalidad h-100 p-4 text-center rounded shadow-sm bg-white">
+                        <i class="fas fa-boxes fa-3x text-warning mb-3"></i>
+                        <h4 class="card-title text-dark">Control de Inventario</h4>
+                        <p class="card-text text-muted">Administración detallada de productos y existencias.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="tarjeta-funcionalidad h-100 p-4 text-center rounded shadow-sm bg-secondary bg-gradient">
-                        <i class="fas fa-chart-pie fa-3x text-primary mb-3"></i>
-                        <h4 class="card-title text-white">Reportes Avanzados</h4>
-                        <p class="card-text text-white">Genera análisis detallados de tu rendimiento comercial.</p>
+                    <div class="tarjeta-funcionalidad h-100 p-4 text-center rounded shadow-sm bg-white">
+                        <i class="fas fa-chart-pie fa-3x text-warning mb-3"></i>
+                        <h4 class="card-title text-dark">Reportes Avanzados</h4>
+                        <p class="card-text text-muted">Genera análisis detallados de tu rendimiento comercial.</p>
                     </div>
                 </div>
             </div>

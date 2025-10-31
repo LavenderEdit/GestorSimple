@@ -1,21 +1,26 @@
 export function proveedorLiTemplate(proveedor) {
   return `
-      <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-start">
+      <!-- CAMBIO: Lista a 'bg-warning-subtle' y botones a 'outline' -->
+      <li class="list-group-item bg-warning-subtle border-warning-subtle text-dark d-flex justify-content-between align-items-start p-3">
         <div class="ms-2 me-auto">
-          <div class="fw-bold">${proveedor.nombre}</div>
-          <small>
+          <!-- CAMBIO: Título a 'text-warning-emphasis' -->
+          <div class="fw-bold text-warning-emphasis">${proveedor.nombre}</div>
+          <!-- CAMBIO: Texto a 'text-muted' -->
+          <small class="text-muted">
             ID: ${proveedor.id_proveedor} |
             Email: ${proveedor.email} |
             Tel: ${proveedor.telefono}
           </small>
           <br>
-          <span class="badge bg-secondary">${proveedor.direccion}</span>
+          <!-- CAMBIO: Badge a 'text-bg-secondary' (default light) -->
+          <span class="badge text-bg-secondary">${proveedor.direccion}</span>
         </div>
-        <div>
-          <button class="btn btn-sm btn-editar-proveedor me-2" data-id="${proveedor.id_proveedor}" style="background-color: #00A36C; color: white; border: none;">
+        <!-- CAMBIO: Botones a 'outline' y 'gap-2' -->
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-warning btn-editar-proveedor" data-id="${proveedor.id_proveedor}">
             <i class="bi bi-pencil"></i> Editar
           </button>
-          <button class="btn btn-sm btn-eliminar-proveedor" data-id="${proveedor.id_proveedor}" style="background-color: #FF073A; color: white; border: none;">
+          <button class="btn btn-sm btn-outline-danger btn-eliminar-proveedor" data-id="${proveedor.id_proveedor}">
             <i class="bi bi-trash"></i> Eliminar
           </button>
         </div>

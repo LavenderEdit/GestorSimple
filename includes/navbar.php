@@ -1,10 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-lg"
-    style="background: linear-gradient(45deg, #1a1a1a, #2d2d2d);">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="./">
-            <img src="images/logos/MP-PHP-Logo-Rectangle.webp" alt="Logo"
+            <!-- CAMBIO: Logo actualizado al de la app -->
+            <img src="images/logos/logo-app.webp" alt="Logo VentaGo"
                 class="img-fluid me-2 rounded-circle shadow-sm" style="max-width: 40px; max-height: 40px;">
-            <span class="fw-bold">MP-PHP</span>
+            <!-- CAMBIO: Nombre de la empresa actualizado -->
+            <span class="fw-bold">VentaGo</span>
         </a>
 
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -13,11 +14,7 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item mx-2">
-                    <a class="nav-link d-flex align-items-center active-link" href="index.php">
-                        <i class="fas fa-home me-2"></i>Inicio
-                    </a>
-                </li>
+                
                 <li class="nav-item mx-2">
                     <a class="nav-link d-flex align-items-center" href="index.php#info">
                         <i class="fas fa-users me-2"></i>Sobre Nosotros
@@ -38,7 +35,8 @@
             <div class="d-flex align-items-center">
                 <?php if (isset($_SESSION['usuario'])): ?>
                     <div class="dropdown">
-                        <a class="btn btn-success rounded-pill px-4 dropdown-toggle" href="#" role="button"
+                        <!-- CAMBIO: Botón a 'btn-warning' para coincidir con el tema -->
+                        <a class="btn btn-warning text-dark fw-bold rounded-pill px-4 dropdown-toggle" href="#" role="button"
                             id="userDropdown" data-bs-toggle="dropdown">
                             <i class="fas fa-user-circle me-2"></i><?= $_SESSION['usuario']['nombre'] ?>
                         </a>
@@ -53,7 +51,8 @@
                         </ul>
                     </div>
                 <?php else: ?>
-                    <a href="./views/auth/login.php" class="btn btn-primary rounded-pill px-4">
+                    <!-- CAMBIO: Botón a 'btn-warning' para coincidir con el tema -->
+                    <a href="./views/auth/login.php" class="btn btn-warning text-dark fw-bold rounded-pill px-4">
                         <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
                     </a>
                 <?php endif; ?>

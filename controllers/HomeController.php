@@ -16,24 +16,24 @@ class HomeController extends Controller
     {
         return [
             'empresa' => [
-                'razon_social' => 'DIGITAL BUHO S.A.C',
-                'ruc' => '20603684291',
-                'director' => 'ENRIQUE BACA DEYVIS DANIEL',
-                'direccion' => 'Urbanización Villa Los Ángeles Altura de la 4 de, Seoane 232',
+                'razon_social' => 'VentaGo',
+                'ruc' => '20603512345',
+                'director' => 'David Ojeda',
+                'direccion' => 'Av. Los Álamos 457, Urb. Las Palmeras, Lima, Perú',
                 'tipo' => 'MYPE',
                 'condicion' => 'SOCIO',
-                'rubro_principal' => 'Programación informática',
-                'rubro_secundario' => 'Venta al por menor por internet'
+                'rubro_principal' => 'Venta de productos de cualquier tipo',
+                'rubro_secundario' => 'servicios de soporte técnico',
             ],
 
             'mision_vision' => [
                 'mision' => [
                     'icono' => 'fas fa-bullseye',
-                    'contenido' => 'Ayudar a los negocios y emprendedores a despegar su marca en el mundo digital mediante un trabajo creativo y comprometido.'
+                    'contenido' => 'Brindar a nuestros clientes una experiencia de compra confiable, accesible y moderna, ofreciendo una amplia variedad de productos de calidad que se adapten a sus necesidades diarias, con un servicio rápido, transparente y enfocado en la satisfacción total del cliente.'
                 ],
                 'vision' => [
                     'icono' => 'fas fa-binoculars',
-                    'contenido' => 'Ser punto de referencia en ofrecer las mejores soluciones de tecnología Digital en el Perú.'
+                    'contenido' => 'Convertirnos en una de las plataformas de ventas más reconocidas del país, destacando por nuestra innovación, compromiso con el cliente y capacidad para ofrecer soluciones comerciales integrales que faciliten la vida de las personas.'
                 ],
                 'valores' => [
                     'Integridad',
@@ -45,57 +45,58 @@ class HomeController extends Controller
             ],
 
             'productos' => [
-                [
-                    'titulo' => 'Constructor Web',
-                    'descripcion' => 'Plataforma para creación y edición de hojas de estilo con personalización avanzada',
-                    'icono' => 'fas fa-code'
-                ],
-                [
-                    'titulo' => 'Facturación Fácil',
-                    'descripcion' => 'Sistema automatizado para generación de facturas electrónicas y reportes',
-                    'icono' => 'fas fa-file-invoice-dollar'
-                ],
-                [
-                    'titulo' => 'Correos Corporativos',
-                    'descripcion' => 'Solución profesional de correos electrónicos personalizados con dominio empresarial',
-                    'icono' => 'fas fa-envelope'
-                ],
-                [
-                    'titulo' => 'Chat Buho',
-                    'descripcion' => 'Plataforma unificada para gestión de comunicaciones multicanal',
-                    'icono' => 'fas fa-comments'
-                ]
+    [
+        'titulo' => 'Tienda Online',
+        'descripcion' => 'Plataforma moderna para comprar y vender una amplia variedad de productos de manera rápida y segura.',
+        'icono' => 'fas fa-shopping-cart'
+    ],
+    [
+        'titulo' => 'Ofertas y Descuentos',
+        'descripcion' => 'Sistema inteligente que muestra las mejores promociones y rebajas disponibles cada semana.',
+        'icono' => 'fas fa-tags'
+    ],
+    [
+        'titulo' => 'Gestión de Pedidos',
+        'descripcion' => 'Herramienta para seguimiento de compras, estado de envío y atención postventa en tiempo real.',
+        'icono' => 'fas fa-box'
+    ],
+    [
+        'titulo' => 'Atención al Cliente 24/7',
+        'descripcion' => 'Canales de comunicación rápidos y eficaces para resolver consultas y brindar soporte continuo.',
+        'icono' => 'fas fa-headset'
+    ],
             ],
 
             'mercado' => [
-                'geografico' => 'Nacional',
-                'psicografico' => 'Empresarios interesados en crecimiento y posicionamiento',
-                'conductual' => 'Fortalecimiento de marca e interacción con clientes'
-            ],
+    'geografico' => 'Nacional, con proyección de expansión a nivel latinoamericano',
+    'psicografico' => 'Consumidores modernos, prácticos y digitales que buscan comodidad, precios competitivos y confianza en sus compras',
+    'conductual' => 'Clientes interesados en adquirir productos de diferentes categorías desde una sola plataforma, priorizando la rapidez y la seguridad en sus compras'
+],
 
             'clientes' => [
-                'target' => 'Pequeños y medianos empresarios peruanos',
-                'sectores' => [
-                    'Construcción',
-                    'Alimentación',
-                    'Retail',
-                    'Moda',
-                    'Educación corporativa',
-                    'Servicios veterinarios'
-                ]
-            ],
+    'target' => 'Consumidores y empresas peruanas que buscan una plataforma confiable para adquirir productos de diversas categorías',
+    'sectores' => [
+        'Tecnología',
+        'Hogar y Electrodomésticos',
+        'Moda y Accesorios',
+        'Salud y Belleza',
+        'Alimentos y Bebidas',
+        'Emprendimientos locales'
+    ]
+],
 
-            'equipo' => [
-                'gerencia' => [
-                    'DEYVIS ENRIQUE' => 'Gerente General'
-                ],
-                'areas' => [
-                    'Desarrollo' => ['PIERO COSQUILLO', 'ALEXANDRA SANJINES'],
-                    'Marketing' => ['LUCEBO HORNA', 'MICHELLE LOPEZ', 'ELERY SALINAS'],
-                    'Diseño' => ['ABRAHAM PEÑA', 'ESTEPHANIE VENEGAS'],
-                    'Soporte' => ['DHANIA ENCISO', 'MARIO CONCHA', 'NICOLE TORRES']
-                ]
-            ]
+'equipo' => [
+    'gerencia' => [
+        'DAVID OJEDA' => 'Director General'
+    ],
+    'areas' => [
+        'Desarrollo' => ['PIERO COSQUILLO', 'ALEXANDRA SANJINES'],
+        'Marketing' => ['LUCEBO HORNA', 'MICHELLE LOPEZ', 'ELERY SALINAS'],
+        'Diseño' => ['ABRAHAM PEÑA', 'ESTEPHANIE VENEGAS'],
+        'Soporte y Atención al Cliente' => ['DHANIA ENCISO', 'MARIO CONCHA', 'NICOLE TORRES'],
+        'Logística y Ventas' => ['JULIO RAMOS', 'CAROLINA VERA']
+    ]
+],
         ];
     }
 }
